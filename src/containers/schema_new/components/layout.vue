@@ -306,7 +306,6 @@ export default {
         return this.schema.attributes
       },
       set (value) {
-        console.log(value)
         _.each(value, (s, i) => { s.order = i })
       }
     }

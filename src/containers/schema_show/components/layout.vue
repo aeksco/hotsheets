@@ -42,6 +42,9 @@
                 <a v-if="attr.datatype === 'SCHEMA'" :href="getLinkedSchemaHref(attr, record.attributes[attr.identifier])">
                   {{ getLinkedSchemaLabel(attr, record.attributes[attr.identifier]) }}
                 </a>
+                <a v-else-if="attr.unique" :href=" '#/schemas/' + schema._id + '/records/' + record._id">
+                  {{ record.attributes[attr.identifier] }}
+                </a>
                 <span v-else-if="attr.datatype === 'BOOL'">
                   <i class="fa fa-fw fa-check-square-o" v-if="record.attributes[attr.identifier]"></i>
                   <i class="fa fa-fw fa-square-o" v-if="!record.attributes[attr.identifier]"></i>
