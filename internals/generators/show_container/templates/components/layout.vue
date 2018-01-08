@@ -6,7 +6,7 @@ g
   	<hr>
 
     <!-- Edit Link -->
-  	<a class='btn btn-secondary' :href="'/#/<%= resource_route %>/' + model._id + '/edit'">
+  	<a class='btn btn-secondary' :href="'#/<%= resource_route %>/' + model._id + '/edit'">
       Edit <%= resource_title %>
     </a>
 

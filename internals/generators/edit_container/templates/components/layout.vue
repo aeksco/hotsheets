@@ -1,7 +1,7 @@
 
 <template>
   <div class="container">
-    <a :href="'/#/<%= resource_route %>/' + id">Back</a>
+    <a :href="'#/<%= resource_route %>/' + id">Back</a>
     <h2><%= resource_title %> Edit - {{model.name}}</h2>
     <hr>
 

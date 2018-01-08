@@ -32,20 +32,21 @@ const mutations = {
     // Clears state.selectedAttribute step
     state.selectedAttribute = null
   },
-  create (state, { schema }) {
-    state.collection.push(_.cloneDeep(schema))
-    console.log('SUBMIT SUBMIT SUBTMIS???')
-    window.location = '/#/schemas'
-  },
-  update (state, { schema }) {
-    state.collection = _.map(state.collection, (s) => {
-      if (s._id === schema._id) {
-        return schema
-      } else {
-        return s
-      }
-    })
-    window.location = '/#/schemas'
+  persist (state, { schema }) {
+    if (schema._id) {
+      state.collection = _.map(state.collection, (s) => {
+        if (s._id === schema._id) {
+          return schema
+        } else {
+          return s
+        }
+      })
+    } else {
+      schema._id = 'schema_' + Math.floor((Math.random() * 100000000000000) + 1)
+      state.collection.push(schema)
+    }
+
+    window.location = '#/schemas'
   },
   destroy (state, { schema }) {
     state.collection = _.filter(state.collection, (s) => { return s._id !== schema._id })

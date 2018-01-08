@@ -25,7 +25,7 @@ const actions = {
 
       // Redirects to REDIRECT_SUCCESS
       // TODO - What is the best way to manage redirection in VueJS?
-      window.location = '/#/'
+      window.location = '#/'
     })
   },
 
@@ -44,7 +44,7 @@ const actions = {
 
       // Redirects to REDIRECT_SUCCESS
       // TODO - What is the best way to manage redirection in VueJS?
-      window.location = '/#/auth/login'
+      window.location = '#/auth/login'
     })
     .catch((obj) => {
       // State.fetching = false
@@ -58,7 +58,7 @@ const actions = {
   logout: ({ commit }, data) => {
     commit('flush_token')
     store.commit('notification/add', { message: 'Successfully logged out.', context: 'info', dismissible: true })
-    window.location = '/#/auth/login'
+    window.location = '#/auth/login'
   },
 
   is_authenticated: ({ commit }, data) => {

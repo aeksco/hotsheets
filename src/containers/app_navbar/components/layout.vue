@@ -14,7 +14,7 @@
 	    <ul class="navbar-nav mr-auto">
 
         <li class="nav-item" v-for="s in allSchemas" :key="s._id">
-          <a class="nav-link" :href="'/#/schemas/' + s._id ">{{s.label_plural}}</a>
+          <a class="nav-link" :href="'#/schemas/' + s._id ">{{s.label_plural}}</a>
         </li>
 
 	    </ul>

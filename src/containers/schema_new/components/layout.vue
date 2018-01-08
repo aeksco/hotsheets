@@ -1,8 +1,8 @@
 
 <template>
   <div class="container">
-    <h2 v-if="!schema.id">New Schema</h2>
-    <h2 v-if="schema.id">Edit Schema</h2>
+    <h2 v-if="!schema._id">New Schema</h2>
+    <h2 v-if="schema._id">Edit Schema</h2>
     <hr>
     <div class="row">
       <div class="col-lg-12">
@@ -252,8 +252,8 @@ export default {
   },
   methods: {
     onSubmit () {
-      if (this.schema.label && this.schema.identifier) {
-        store.commit('schema/create', { schema: this.schema })
+      if (this.schema.label && this.schema.identifier && this.schema.label_plural) {
+        store.commit('schema/persist', { schema: this.schema })
       }
     },
     addAttribute () {
@@ -296,10 +296,11 @@ export default {
     attributes: {
       get () {
         // TODO - this should be moved into Vuex store
-        // this.schema.attributes = _.orderBy(this.schema.attributes, ['order'], ['asc'])
+        this.schema.attributes = _.orderBy(this.schema.attributes, ['order'], ['asc'])
         return this.schema.attributes
       },
       set (value) {
+        console.log(value)
         _.each(value, (s, i) => { s.order = i })
       }
     }

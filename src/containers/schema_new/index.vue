@@ -21,7 +21,7 @@ export default {
     let schema = {
       label: '',
       identifier: '',
-      _id: 'schema_' + Math.floor((Math.random() * 100000000000000) + 1),
+      _id: null,
       attributes: []
     }
     return { schema }
