@@ -1,0 +1,15 @@
+{
+  "name": "generator-web_client",
+  "version": "0.1.0",
+  "description": "",
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "underscore.string": "^3.3.4",
+    "yeoman-generator": "^1.0.0"
+  }
+}
