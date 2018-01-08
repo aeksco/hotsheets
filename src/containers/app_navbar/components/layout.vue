@@ -17,6 +17,12 @@
           <a class="nav-link" :href="'#/schemas/' + s._id ">{{s.label_plural}}</a>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link" href="#/schemas/new">
+            <i class="fa fa-fw fa-plus" v-b-tooltip.hover.right title="New Schema"></i>
+          </a>
+        </li>
+
 	    </ul>
 
 	    <ul class="navbar-nav ml-auto">

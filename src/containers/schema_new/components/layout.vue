@@ -1,30 +1,34 @@
 
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <h2 v-if="!schema._id">New Schema</h2>
     <h2 v-if="schema._id">Edit Schema</h2>
     <hr>
     <div class="row">
-      <div class="col-lg-12">
-
-
+      <div class="col-lg-6">
         <div class="card card-body bg-dark text-light border-light">
 
-          <!-- Attribute Form -->
-          <div class="row" v-if="selectedAttr">
+          <!-- Schema Form -->
+          <!-- <div class="row" v-if="!selectedAttr"> -->
+          <div class="row">
             <div class="col-lg-12">
-
-              <p class="lead">New Schema Attribute</p>
-
-              <hr>
 
               <div class="form-group">
                 <label>
                   Label
                   <span class='text-danger'>*</span>
                 </label>
-                <small class="form-text text-muted">The human-readable name for this attribute. Example: 'Last Name'</small>
-                <input type="text" class="form-control" placeholder="Label" v-model="selectedAttr.label" >
+                <small class="form-text text-muted">Example: 'Odd Job'<br>The human-readable name for a single entity of this schema.</small>
+                <input type="text" class="form-control" placeholder="Label" v-model="schema.label" >
+              </div>
+
+              <div class="form-group">
+                <label>
+                  Plural Label
+                  <span class='text-danger'>*</span>
+                </label>
+                <small class="form-text text-muted">Example: 'Odd Jobs'<br>The plural version of the Label attribute.</small>
+                <input type="text" class="form-control" placeholder="Plural Label" v-model="schema.label_plural" >
               </div>
 
               <div class="form-group">
@@ -32,8 +36,91 @@
                   Identifier
                   <span class='text-danger'>*</span>
                 </label>
-                <small class="form-text text-muted">The lowercase-only version of the identifier with spaces instead of underscores. Example: 'last_name'</small>
-                <input type="text" class="form-control" placeholder="Identifier" v-model="selectedAttr.identifier" >
+                <small class="form-text text-muted">Example: 'odd_job'<br>The lowercase-only version of the identifier with spaces instead of underscores.</small>
+                <input type="text" class="form-control" placeholder="Identifier" v-model="schema.identifier" >
+              </div>
+
+              <div class="form-group">
+                <label>
+                  Plural Identifier
+                  <span class='text-danger'>*</span>
+                </label>
+                <small class="form-text text-muted">Example: 'odd_jobs'<br>The plural version Identifier attribute.</small>
+                <input type="text" class="form-control" placeholder="Plural Identifier" v-model="schema.plural_identifier" >
+              </div>
+
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="row mt-2">
+            <div class="col-lg-12">
+              <button class="btn btn-outline-success btn-block" @click="onSubmit()">
+                <i class="fa fa-fw mr-1 fa-check"></i>
+                Submit
+              </button>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card card-body bg-dark text-light border-light">
+
+          <!-- Attribute Form -->
+          <div class="row" v-if="selectedAttr">
+            <div class="col-lg-12">
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <p class="lead mb-0">New Schema Attribute</p>
+                </div>
+                <div class="col-lg-6 text-right">
+                  <div class="btn-group w-100" v-if="selectedAttr">
+
+                    <button class="btn btn-sm btn-outline-secondary w-50" @click="clearSelected()">
+                      <i class="fa fa-fw mr-1 fa-angle-left"></i>
+                      Back
+                    </button>
+
+                    <button class="btn btn-sm btn-outline-success w-50" @click="updateSelected(selectedAttr)">
+                      <i class="fa fa-fw mr-1 fa-check"></i>
+                      Submit
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="row">
+
+                <div class="col-lg-6 col-sm-12">
+                  <div class="form-group">
+                    <label>
+                      Label
+                      <span class='text-danger'>*</span>
+                    </label>
+                    <small class="form-text text-muted">Example: 'Last Name'<br>The human-readable name for this attribute.</small>
+                    <input type="text" class="form-control" placeholder="Label" v-model="selectedAttr.label" >
+                  </div>
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                  <div class="form-group">
+                    <label>
+                      Identifier
+                      <span class='text-danger'>*</span>
+                    </label>
+                    <small class="form-text text-muted">Example: 'last_name'<br>Lowercase, no spaces.</small>
+                    <input type="text" class="form-control" placeholder="Identifier" v-model="selectedAttr.identifier" >
+                  </div>
+                </div>
+
               </div>
 
               <div class="form-group">
@@ -46,21 +133,28 @@
               </div>
 
               <!-- TODO - scope under 'validations' -->
-              <div class="form-group">
-                <label>
-                  Required
-                  <span class='text-danger'>*</span>
-                </label>
-                <small class="form-text text-muted">Whether or not to enforce unique values for this attribute.</small>
-                <input type="checkbox" class="form-control" v-model="selectedAttr.required" >
-              </div>
+              <div class="row">
 
-              <!-- TODO - scope under 'validations' -->
-              <div class="form-group">
-                <label>Unique</label>
-                <small class="form-text text-muted">Whether or not this attribute is required.</small>
-                <input type="checkbox" class="form-control" v-model="selectedAttr.unique" >
+                <div class="col-lg-6 col-sm-12">
+                  <div class="form-group">
+                    <label>
+                      Required
+                      <span class='text-danger'>*</span>
+                    </label>
+                    <small class="form-text text-muted">Whether or not to enforce unique values for this attribute.</small>
+                    <input type="checkbox" class="form-control" v-model="selectedAttr.required" >
+                  </div>
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                  <div class="form-group">
+                    <label>Unique</label>
+                    <small class="form-text text-muted">Whether or not this attribute is required.</small>
+                    <input type="checkbox" class="form-control" v-model="selectedAttr.unique" >
+                  </div>
+                </div>
               </div>
+              <!-- end 'validations' -->
 
               <div class="form-group">
                 <label>Preferred Display Attribute</label>
@@ -108,67 +202,6 @@
                 <input type="text" class="form-control" placeholder="Default Value" v-model="selectedAttr.datatypeOptions.default" >
               </div>
 
-<!--               <div class="form-group" v-if="selectedAttr.datatype === 'NUMBER'">
-                <label>Minimum Value</label>
-                <input type="number" class="form-control" placeholder="Minimum value" v-model="selectedAttr.datatypeOptions.min" >
-                <small class="form-text text-muted">The minimum value allowed for this attribute.</small>
-              </div>
-
-              <div class="form-group" v-if="selectedAttr.datatype === 'NUMBER'">
-                <label>Maximum Value</label>
-                <input type="number" class="form-control" placeholder="Maximum value" v-model="selectedAttr.datatypeOptions.max" >
-                <small class="form-text text-muted">The maximum value allowed for this attribute.</small>
-              </div>
-
-              <div class="form-group" v-if="selectedAttr.datatype === 'NUMBER'">
-                <label>Step Size</label>
-                <input type="number" class="form-control" placeholder="Maximum value" v-model="selectedAttr.datatypeOptions.step" >
-                <small class="form-text text-muted">The size of numerical step allowed for end-user input (i.e. count by 10s)</small>
-              </div> -->
-
-            </div>
-          </div>
-
-          <!-- Schema Form -->
-          <div class="row" v-if="!selectedAttr">
-            <div class="col-lg-12">
-
-              <div class="form-group">
-                <label>
-                  Label
-                  <span class='text-danger'>*</span>
-                </label>
-                <small class="form-text text-muted">The human-readable name for a single entity of this schema. Example: 'Odd Job'</small>
-                <input type="text" class="form-control" placeholder="Label" v-model="schema.label" >
-              </div>
-
-              <div class="form-group">
-                <label>
-                  Plural Label
-                  <span class='text-danger'>*</span>
-                </label>
-                <small class="form-text text-muted">The plural version of the Label attribute. Example: 'Odd Jobs'</small>
-                <input type="text" class="form-control" placeholder="Plural Label" v-model="schema.label_plural" >
-              </div>
-
-              <div class="form-group">
-                <label>
-                  Identifier
-                  <span class='text-danger'>*</span>
-                </label>
-                <small class="form-text text-muted">The lowercase-only version of the identifier with spaces instead of underscores. Example: 'odd_jobs'</small>
-                <input type="text" class="form-control" placeholder="Identifier" v-model="schema.identifier" >
-              </div>
-
-              <div class="form-group">
-                <label>
-                  Plural Identifier
-                  <span class='text-danger'>*</span>
-                </label>
-                <small class="form-text text-muted">The plural version Identifier attribute. Example: 'odd_jobs'</small>
-                <input type="text" class="form-control" placeholder="Plural Identifier" v-model="schema.plural_identifier" >
-              </div>
-
             </div>
           </div>
 
@@ -197,39 +230,8 @@
             </div>
           </div>
 
-          <div class="row mt-2" v-if="!selectedAttr">
-            <div class="col-lg-12">
-              <hr>
-            </div>
-          </div>
-
-          <div class="row mt-2">
-            <div class="col-lg-12">
-
-              <div class="btn-group w-100" v-if="selectedAttr">
-
-                <button class="btn btn-sm btn-outline-secondary w-50" @click="clearSelected()">
-                  <i class="fa fa-fw mr-1 fa-angle-left"></i>
-                  Back
-                </button>
-
-                <button class="btn btn-sm btn-outline-success w-50" @click="updateSelected(selectedAttr)">
-                  <i class="fa fa-fw mr-1 fa-check"></i>
-                  Submit
-                </button>
-
-              </div>
-
-              <button class="btn btn-outline-success btn-block" @click="onSubmit()" v-if="!selectedAttr">
-                <i class="fa fa-fw mr-1 fa-check"></i>
-                Submit
-              </button>
-
-            </div>
-          </div>
-
         </div>
-
+        <!-- End right card -->
 
       </div>
     </div>
@@ -249,6 +251,10 @@ export default {
   components: {
     draggable,
     AttributeItem
+  },
+  beforeMount () {
+    console.log('beforeDestroy!!!')
+    store.commit('schema/clearSelectedAttribute')
   },
   methods: {
     onSubmit () {
