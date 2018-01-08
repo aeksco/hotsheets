@@ -8,18 +8,19 @@ const state = {
       _id: 'schema_29321443037762',
       attributes: [
         {
-          order: 1,
+          order: 0,
           label: 'Name',
           help: 'Name of the individual',
-          required: true,
+          required: false,
           datatype: 'TEXT',
           datatypeOptions: {},
           identifier: 'name',
           unique: true,
-          _id: 'attr_1'
+          _id: 'attr_1',
+          preferred: true
         },
         {
-          order: 2,
+          order: 1,
           label: 'Location',
           help: 'Location of the individual',
           required: false,
@@ -29,7 +30,7 @@ const state = {
           _id: 'attr_2'
         },
         {
-          order: 3,
+          order: 2,
           label: 'Phone Number',
           help: 'Phone number of the individual',
           required: false,
