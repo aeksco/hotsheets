@@ -47,11 +47,11 @@
           <i class="fa fa-asterisk text-danger"></i>
         </span>
         <!-- UNIQUE -->
-        <span class="badge" v-if="item.required" v-b-tooltip.hover.top title="Unique">
+        <span class="badge" v-if="item.unique" v-b-tooltip.hover.top title="Unique">
           <i class="fa fa-snowflake-o text-info"></i>
         </span>
         <!-- PREFERRED -->
-        <span class="badge" v-if="item.required" v-b-tooltip.hover.top title="Preferred">
+        <span class="badge" v-if="item.preferred" v-b-tooltip.hover.top title="Preferred">
           <i class="fa fa-star-o text-warning"></i>
         </span>
       </div>
