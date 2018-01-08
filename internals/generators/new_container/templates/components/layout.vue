@@ -1,7 +1,7 @@
 
 <template>
   <div class="container">
-    <a href="/#/<%= resource_route %>">Back</a>
+    <a href="#/<%= resource_route %>">Back</a>
     <h2><%= resource_title %> - New</h2>
     <hr>
 

@@ -21,13 +21,13 @@
 
 	    <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/#/schemas">Admin</a>
+          <a class="nav-link" href="#/schemas">Admin</a>
         </li>
 <!-- 	      <li class="nav-item">
-	        <a class="nav-link" href="/#/auth/register">Register</a>
+	        <a class="nav-link" href="#/auth/register">Register</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="/#/auth/login">Login</a>
+	        <a class="nav-link" href="#/auth/login">Login</a>
 	      </li> -->
 	    </ul>
 	  </div>

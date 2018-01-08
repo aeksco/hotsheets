@@ -59,7 +59,7 @@
 
     <div class="row mt-2">
       <div class="col-lg-12">
-        <a class="btn btn-block btn-outline-success" href="/#/schemas/new">
+        <a class="btn btn-block btn-outline-success" href="#/schemas/new">
           <i class="fa fa-fw fa-plus mr-2"></i>
           New Schema
         </a>

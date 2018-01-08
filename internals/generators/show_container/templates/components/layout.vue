@@ -1,7 +1,7 @@
 g
 <template>
   <div class="container">
-    <a href="/#/<%= resource_route %>">Back</a>
+    <a href="#/<%= resource_route %>">Back</a>
     <h2><%= resource_title %> Show - {{model.name}}</h2>
   	<hr>
 

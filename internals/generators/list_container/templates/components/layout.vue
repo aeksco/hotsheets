@@ -10,7 +10,7 @@
 
         <!-- New Button -->
   			<ul class="list-group mt-2 mb-4 text-center">
-  				<a class="list-group-item" href="/#/<%= resource_route %>/new">NEW</a>
+  				<a class="list-group-item" href="#/<%= resource_route %>/new">NEW</a>
   			</ul>
 
         <!-- Fetching -->
