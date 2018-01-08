@@ -144,7 +144,7 @@
       </div>
 
       <div class="row justify-content-center">
-        <div class="col-lg-4"><a href="/#/schemas" class="btn btn-light btn-block btn-lg"><i class="fa fa-fw fa-list-alt mr-2"></i>Let's get started.</a></div>
+        <div class="col-lg-4"><a href="#/schemas" class="btn btn-light btn-block btn-lg"><i class="fa fa-fw fa-list-alt mr-2"></i>Let's get started.</a></div>
       </div>
 
     </div>

@@ -1,7 +1,7 @@
 <template>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <a class="navbar-brand" href="/#/">
+    <a class="navbar-brand" href="#/">
       <!-- <img class='logo mr-3' src="/static/icon_white.svg"> -->
       <strong>Hot</strong>Sheets
     </a>
