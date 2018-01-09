@@ -4,6 +4,9 @@ const getters = {
   collection: state => {
     return state.collection
   },
+  selectedSchema: state => {
+    return state.selectedSchema
+  },
   selectedAttribute: state => {
     return state.selectedAttribute
   }

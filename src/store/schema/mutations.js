@@ -8,30 +8,6 @@ const mutations = {
   sync (state, collection) {
     state.collection = _.sortBy(collection, (s) => { return s.order })
   },
-  // updateSelected
-  // Inserts the updated step into
-  // it's correct position in workflow.steps
-  updateSelected (state, { schema, attr }) {
-    if (!attr._id) {
-      attr._id = _.uniqueId('attr_')
-      schema.attributes.push(attr)
-      state.selectedAttribute = null
-      return
-    }
-
-    schema.attributes = _.chain(schema.attributes)
-      .map((s) => {
-        if (s._id !== attr._id) {
-          return s
-        } else {
-          return attr
-        }
-      })
-      .value()
-
-    // Clears state.selectedAttribute step
-    state.selectedAttribute = null
-  },
   persist (state, { schema }) {
     if (schema._id) {
       state.collection = _.map(state.collection, (s) => {
@@ -53,6 +29,12 @@ const mutations = {
   },
   selectAttribute (state, { attr }) {
     state.selectedAttribute = _.cloneDeep(attr)
+  },
+  selectSchema (state, { _id }) {
+    state.selectedSchema = _.cloneDeep(_.find(state.collection, { _id }))
+  },
+  clearSelectedSchema (state) {
+    state.selectedSchema = null
   },
   clearSelectedAttribute (state) {
     state.selectedAttribute = null

@@ -171,9 +171,14 @@
                   <option value='BOOL'>Checkbox</option>
                   <option value='NUMBER'>Number</option>
                   <option value='SCHEMA'>Schema</option>
+                  <!-- <option value='TEXT_SELECT'>Text Select</option> -->
+                  <!-- <option value='NUMBER_SELECT'>Number Select</option> -->
+                  <!-- <option value='CURRENCY'>Currency</option> -->
+                  <!-- <option value='NESTED_SCHEMA'>Nested Schema</option> -->
                 </select>
               </div>
 
+              <!-- SCHEMA Options -->
               <div class="form-group" v-if="selectedAttr.datatype === 'SCHEMA'">
                 <label>Related Schema</label>
                 <small class="form-text text-muted">The Schema to which this attribute represents a relation.</small>
@@ -200,6 +205,32 @@
                 <label>Default Value</label>
                 <small class="form-text text-muted">The default value for this attribute when none is available.</small>
                 <input type="text" class="form-control" placeholder="Default Value" v-model="selectedAttr.datatypeOptions.default" >
+              </div>
+
+            </div>
+
+            <div class="col-lg-12">
+              <hr>
+              <p class="lead mb-0">Display Options</p>
+
+              <div class="form-group">
+                <label>
+                  Input Column Span
+                </label>
+                <small class="form-text text-muted">The column span of the input field when it appears in a form (2-12).</small>
+                <select type="number" class="form-control" min=2 max=12 step=1 placeholder="Column Span" v-model="selectedAttr.col_span" >
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                  <option>11</option>
+                  <option>12</option>
+                </select>
               </div>
 
             </div>
