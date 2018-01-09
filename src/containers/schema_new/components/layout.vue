@@ -13,6 +13,11 @@
           <div class="row">
             <div class="col-lg-12">
 
+              <p class="lead mb-0">Schema Properties</p>
+              <small class="mb-2 form-text text-muted">Defines the core properties that are used to create a valid schema.</small>
+
+              <hr>
+
               <div class="form-group">
                 <label>
                   Label
@@ -75,10 +80,11 @@
             <div class="col-lg-12">
 
               <div class="row">
-                <div class="col-lg-6">
-                  <p class="lead mb-0">New Schema Attribute</p>
+                <div class="col-lg-8">
+                  <p class="lead mb-0">Attribute</p>
+                  <small class="form-text text-muted">Define the core parameters that are used to create a valid Attribute.</small>
                 </div>
-                <div class="col-lg-6 text-right">
+                <div class="col-lg-4 text-right">
                   <div class="btn-group w-100" v-if="selectedAttr">
 
                     <button class="btn btn-sm btn-outline-secondary w-50" @click="clearSelected()">
@@ -98,6 +104,10 @@
               <hr>
 
               <div class="row">
+
+                <div class="col-lg-12">
+                  <p class="lead mb-0">Properties</p>
+                </div>
 
                 <div class="col-lg-6 col-sm-12">
                   <div class="form-group">
@@ -162,8 +172,11 @@
                 <input type="checkbox" class="form-control" v-model="selectedAttr.preferred" >
               </div>
 
+              <hr>
+              <p class="lead mb-0">DataType</p>
+
               <div class="form-group">
-                <label>DataType</label>
+                <label>Type</label>
                 <small class="form-text text-muted">The type of data represented by this attribute.</small>
                 <select class="form-control" placeholder="Datatype" v-model="selectedAttr.datatype" >
                   <option value='TEXT'>Text</option>
@@ -241,6 +254,8 @@
 
               <p class="lead mb-0">Attributes</p>
               <small class="mb-2 form-text text-muted">Defines the attributes that can be assigned to an entity of this schema.</small>
+              <hr>
+
               <draggable class='list-group' v-model='attributes' :options="sortableOptions">
                 <AttributeItem v-for="each in attributes" :item="each" :key="each._id" :remove="removeAttribute" :edit="editAttribute" />
                 <li class="px-2 py-4 text-center list-group-item list-group-item-info" @click="addAttribute()" v-if="!attributes.length">
