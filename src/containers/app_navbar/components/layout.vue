@@ -31,10 +31,10 @@
         </li>
 <!-- 	      <li class="nav-item">
 	        <a class="nav-link" href="#/auth/register">Register</a>
-	      </li>
+	      </li> -->
 	      <li class="nav-item">
 	        <a class="nav-link" href="#/auth/login">Login</a>
-	      </li> -->
+	      </li>
 	    </ul>
 	  </div>
 	</nav>

@@ -10,7 +10,19 @@
 
   </head>
   <body>
-    <div id="app"></div>
+    <!-- <div id="app"></div> -->
     <!-- built files will be auto injected -->
+
+    <div id="app"></div>
+
+    <script type="text/javascript">
+      function initGoogleApi() {
+        console.info('Init Google API');
+        setTimeout(() => {
+          if (window.onSheetApiLoaded) window.onSheetApiLoaded();
+        }, 1000)
+      }
+    </script>
+    <script src="https://apis.google.com/js/client.js?onload=initGoogleApi"></script>
   </body>
 </html>

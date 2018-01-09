@@ -13,9 +13,6 @@ const actions = {
 
     // Authenticates User
     AuthFactory.authenticate(data).then((response) => {
-      // Sets state.token
-      commit('set_token', response.token)
-
       // State.fetching = false
       // TODO - should this be a global state attribute, perhaps part of a store/main module?
       commit('fetching', false)
