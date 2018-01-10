@@ -59,7 +59,7 @@ const state = {
       attributes: {
         job_id: 'JB_00001',
         contact_id: 'rec_32976293799615',
-        invoice: 'rec_50813637509925',
+        invoice_id: 'rec_50813637509925',
         status: 'Completed'
       }
     },
@@ -69,7 +69,7 @@ const state = {
       attributes: {
         job_id: 'JB_00002',
         contact_id: 'rec_83122409943633',
-        invoice: 'rec_56277813766977',
+        invoice_id: 'rec_56277813766977',
         status: 'In-Progress'
       }
     }

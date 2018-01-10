@@ -69,7 +69,11 @@ export default {
     relatedSchemaName (relation) { // TODO - this should be moved into a getter
       let allSchemas = store.getters['schema/collection']
       let relatedSchema = _.find(allSchemas, { _id: relation.schema_id })
-      return relatedSchema.label_plural
+      if (relation.type === 'HAS_MANY') {
+        return relatedSchema.label_plural
+      } else {
+        return relatedSchema.label
+      }
     },
     getRelatedRecords (relation) { // TODO - this should be moved into a getter
       let allSchemas = store.getters['schema/collection']
@@ -80,6 +84,14 @@ export default {
       if (relation.type === 'HAS_MANY') {
         let relatedRecords = _.filter(allRecords, (r) => {
           return r.schema_id === relatedSchema._id && r.attributes[`${this.schema.identifier}_id`] === this.record._id
+        })
+        return relatedRecords
+      }
+
+      if (relation.type === 'BELONGS_TO') {
+        let relatedRecords = _.filter(allRecords, (r) => {
+          // return r.schema_id === relatedSchema._id && r.attributes[_id] === this.record._id
+          return r.schema_id === relatedSchema._id && this.record.attributes[`${relatedSchema.identifier}_id`] === r._id
         })
         return relatedRecords
       }

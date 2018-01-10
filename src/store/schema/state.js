@@ -50,14 +50,23 @@ const state = {
           _id: 'attr_3'
         }
       ],
-      label_plural: 'Contact',
+      label_plural: 'Contacts',
       plural_identifier: 'contacts'
     },
     {
       label: 'Invoice',
       identifier: 'invoice',
       _id: 'schema_22881179555990',
-      relations: [],
+      relations: [
+        {
+          type: 'BELONGS_TO',
+          schema_id: 'schema_29321443037762'
+        },
+        {
+          type: 'HAS_MANY',
+          schema_id: 'schema_85414304137721'
+        }
+      ],
       attributes: [
         {
           order: 0,
@@ -121,7 +130,16 @@ const state = {
       label: 'Job',
       identifier: 'job',
       _id: 'schema_85414304137721',
-      relations: [],
+      relations: [
+        {
+          type: 'BELONGS_TO',
+          schema_id: 'schema_29321443037762'
+        },
+        {
+          type: 'BELONGS_TO',
+          schema_id: 'schema_22881179555990'
+        }
+      ],
       attributes: [
         {
           order: 1,
@@ -157,7 +175,7 @@ const state = {
             schema_id: 'schema_22881179555990',
             schema_attribute_identifier: 'invoice_id'
           },
-          identifier: 'invoice',
+          identifier: 'invoice_id',
           _id: 'attr_3'
         },
         {
