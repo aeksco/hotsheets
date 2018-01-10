@@ -1,5 +1,5 @@
 
-// <%= resource_title %> Module State
+// <%= schema.label %> Module State
 const state = {
   collection: [],
   current: {},

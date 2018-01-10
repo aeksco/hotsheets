@@ -1,5 +1,5 @@
 
-// <%= resource_title %> Module mutations
+// <%= schema.label %> Module mutations
 const mutations = {
   fetching (state, isFetching) {
     state.fetching = isFetching
