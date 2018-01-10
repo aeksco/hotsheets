@@ -20,17 +20,17 @@
   </div>
 
   <div class="col-lg-12 text-right">
-    <a class="btn btn-outline-light mr-2" :href="'#/schemas/' + schema._id">
+    <button class="btn btn-outline-light mr-2" @click="cancelForm">
       <i class="fa fa-fw fa-times mr-1"></i>
       Cancel
-    </a>
+    </button>
 
-    <button class="btn btn-outline-success" @click="createRecord" v-if="schema._id">
+    <button class="btn btn-outline-success" @click="createRecord" v-if="record._id">
       <i class="fa fa-fw fa-plus mr-1"></i>
       Update {{ schema.label }}
     </button>
 
-    <button class="btn btn-outline-success" @click="createRecord" v-if="!schema._id">
+    <button class="btn btn-outline-success" @click="createRecord" v-if="!record._id">
       <i class="fa fa-fw fa-plus mr-1"></i>
       Create {{ schema.label }}
     </button>
@@ -44,10 +44,14 @@
 <script>
 import _ from 'lodash'
 import store from '@/store'
+import router from '@/routers'
 
 export default {
   props: ['schema', 'record'],
   methods: {
+    cancelForm () {
+      router.go(-1)
+    },
     createRecord () {
       store.commit('record/persist', { schema: this.schema, record: this.record })
     },
