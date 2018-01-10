@@ -11,17 +11,17 @@
 
             <div class="col-lg-8">
               <!-- schema URL -->
-              <a v-bind:href="'/#/schemas/' + schema._id">{{schema.label_plural}}</a>
+              <a v-bind:href="'#/schemas/' + schema._id">{{schema.label_plural}}</a>
             </div>
 
             <div class="col-lg-4 text-right">
 
-              <a class='btn btn-sm btn-outline-light' v-bind:href="'/#/schemas/' + schema._id">
+              <a class='btn btn-sm btn-outline-light' v-bind:href="'#/schemas/' + schema._id">
                 <i class="fa fa-list-alt mr-1"></i>
                 Records
               </a>
 
-              <a class='btn btn-sm btn-outline-warning' v-bind:href="'/#/schemas/' + schema._id + '/edit'">
+              <a class='btn btn-sm btn-outline-warning' v-bind:href="'#/schemas/' + schema._id + '/edit'">
                 <i class="fa fa-pencil mr-1"></i>
                 Edit
               </a>
@@ -59,7 +59,7 @@
 
     <div class="row mt-2">
       <div class="col-lg-12">
-        <a class="btn btn-block btn-outline-success" href="/#/schemas/new">
+        <a class="btn btn-block btn-outline-success" href="#/schemas/new">
           <i class="fa fa-fw fa-plus mr-2"></i>
           New Schema
         </a>

@@ -1,9 +1,9 @@
 
 <template>
 <div class="row">
-  <div class="col-lg-12">
 
-    <div class="form-group" v-for="attr in schema.attributes" :key="attr._id">
+  <div v-for="attr in schema.attributes" :key="attr._id" :class="getColspanCss(attr)">
+    <div class="form-group">
       <label>
         {{ attr.label }}
         <span class='text-danger' v-if="attr.required">*</span>
@@ -17,19 +17,24 @@
         <option v-for="rec in schemaDropdown(attr.datatypeOptions.schema_id)" :key="rec._id" :value="rec._id">{{ rec.attributes[attr.datatypeOptions.schema_attribute_identifier] }}</option>
       </select>
     </div>
-
   </div>
 
   <div class="col-lg-12 text-right">
-    <a class="btn btn-outline-light mr-2" :href="'/#/schemas/' + schema._id">
+    <a class="btn btn-outline-light mr-2" :href="'#/schemas/' + schema._id">
       <i class="fa fa-fw fa-times mr-1"></i>
       Cancel
     </a>
 
-    <button class="btn btn-outline-success" @click="createRecord">
+    <button class="btn btn-outline-success" @click="createRecord" v-if="schema._id">
+      <i class="fa fa-fw fa-plus mr-1"></i>
+      Update {{ schema.label }}
+    </button>
+
+    <button class="btn btn-outline-success" @click="createRecord" v-if="!schema._id">
       <i class="fa fa-fw fa-plus mr-1"></i>
       Create {{ schema.label }}
     </button>
+
   </div>
 </div>
 </template>
@@ -45,6 +50,13 @@ export default {
   methods: {
     createRecord () {
       store.commit('record/persist', { schema: this.schema, record: this.record })
+    },
+    getColspanCss (attr) {
+      if (!attr.col_span) {
+        return 'col-lg-12'
+      } else {
+        return `col-lg-${attr.col_span}`
+      }
     },
     schemaDropdown (schema_id) {
       let allRecords = store.getters['record/collection']

@@ -1,12 +1,12 @@
 g
 <template>
   <div class="container">
-    <a href="/#/<%= resource_route %>">Back</a>
+    <a href="#/<%= resource_route %>">Back</a>
     <h2><%= resource_title %> Show - {{model.name}}</h2>
   	<hr>
 
     <!-- Edit Link -->
-  	<a class='btn btn-secondary' :href="'/#/<%= resource_route %>/' + model._id + '/edit'">
+  	<a class='btn btn-secondary' :href="'#/<%= resource_route %>/' + model._id + '/edit'">
       Edit <%= resource_title %>
     </a>
 

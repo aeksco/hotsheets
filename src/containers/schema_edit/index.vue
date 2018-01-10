@@ -6,7 +6,7 @@
 <!-- // // // //  -->
 
 <script>
-import _ from 'lodash'
+// import _ from 'lodash'
 import store from '@/store'
 // import LayoutView from './components/layout.vue'
 import LayoutView from '../schema_new/components/layout.vue'
@@ -16,13 +16,15 @@ export default {
     LayoutView
   },
   metaInfo: {
-    title: 'schema - Edit' // title is now "HotSheets - Workflow - Edit"
+    title: 'Schema - Edit' // title is now "HotSheets - Schema - Edit"
+  },
+  created () {
+    store.commit('schema/selectSchema', { _id: this.id })
   },
   props: ['id'],
   computed: {
     schema () {
-      let schemas = store.getters['schema/collection']
-      return _.find(schemas, { _id: this.id })
+      return store.getters['schema/selectedSchema']
     }
   }
 }

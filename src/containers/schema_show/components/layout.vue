@@ -7,7 +7,7 @@
       </div>
 
       <div class="col-lg-4 text-right">
-        <a class='btn btn-outline-success' :href=" '/#/schemas/' + schema._id + '/records/new' ">
+        <a class='btn btn-outline-success' :href=" '#/schemas/' + schema._id + '/records/new' ">
           <i class="fa fa-fw fa-plus mr-2"></i>
           New {{ schema.label }}
         </a>
@@ -39,19 +39,26 @@
 
               <!-- Record Data -->
               <td v-for="attr in schema.attributes" v-bind:key="attr._id">
-                <span v-if="attr.datatype !== 'SCHEMA'">
-                  {{record.attributes[attr.identifier] || attr.datatypeOptions.default }}
-                </span>
-                <a v-else :href="getLinkedSchemaHref(attr, record.attributes[attr.identifier])">
+                <a v-if="attr.datatype === 'SCHEMA'" :href="getLinkedSchemaHref(attr, record.attributes[attr.identifier])">
                   {{ getLinkedSchemaLabel(attr, record.attributes[attr.identifier]) }}
                 </a>
+                <a v-else-if="attr.unique" :href=" '#/schemas/' + schema._id + '/records/' + record._id">
+                  {{ record.attributes[attr.identifier] }}
+                </a>
+                <span v-else-if="attr.datatype === 'BOOL'">
+                  <i class="fa fa-fw fa-check-square-o" v-if="record.attributes[attr.identifier]"></i>
+                  <i class="fa fa-fw fa-square-o" v-if="!record.attributes[attr.identifier]"></i>
+                </span>
+                <span v-else>
+                  {{record.attributes[attr.identifier] || attr.datatypeOptions.default }}
+                </span>
               </td>
 
               <!-- Record Controls -->
               <td class='text-right'>
 
                 <!-- Edit Record -->
-                <a class="btn btn-sm btn-outline-warning" :href=" '/#/schemas/' + schema._id + '/records/' + record._id + '/edit' ">
+                <a class="btn btn-sm btn-outline-warning" :href=" '#/schemas/' + schema._id + '/records/' + record._id + '/edit' ">
                   <i class="fa fa-fw fa-pencil"></i>
                 </a>
 
@@ -87,7 +94,7 @@
                 <span v-if="i === 0">
                   <span class="text-warning mr-2">No records found.</span>
                   <span class="">Click</span>
-                  <a :href=" '/#/schemas/' + schema._id + '/records/new' "> here </a>
+                  <a :href=" '#/schemas/' + schema._id + '/records/new' "> here </a>
                   to create {{ schema.label_plural.toLowerCase() }}.
                 </span>
               </td>
@@ -120,7 +127,7 @@ export default {
       let record = _.find(allRecords, { _id: record_id })
       if (!record) return
       let schema = _.find(allSchemas, { _id: record.schema_id })
-      return '/#/schemas/' + schema._id + '/records/' + record._id
+      return '#/schemas/' + schema._id + '/records/' + record._id
     },
     getLinkedSchemaLabel (attr, record_id) {
       let allRecords = store.getters['record/collection']

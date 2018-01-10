@@ -1,7 +1,7 @@
 
 <template>
   <div class="container">
-    <a href="/#/users">Back</a>
+    <a href="#/users">Back</a>
     <h2>User Show - {{model.name}}</h2>
   	<hr>
 

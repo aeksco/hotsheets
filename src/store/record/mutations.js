@@ -22,7 +22,7 @@ const mutations = {
       state.collection.push(record)
     }
 
-    window.location = '/#/schemas/' + schema._id
+    window.location = '#/schemas/' + schema._id
   },
   destroy (state, { record }) {
     state.collection = _.filter(state.collection, (s) => { return s._id !== record._id })

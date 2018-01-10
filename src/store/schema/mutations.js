@@ -8,50 +8,33 @@ const mutations = {
   sync (state, collection) {
     state.collection = _.sortBy(collection, (s) => { return s.order })
   },
-  // updateSelected
-  // Inserts the updated step into
-  // it's correct position in workflow.steps
-  updateSelected (state, { schema, attr }) {
-    if (!attr._id) {
-      attr._id = _.uniqueId('attr_')
-      schema.attributes.push(attr)
-      state.selectedAttribute = null
-      return
-    }
-
-    schema.attributes = _.chain(schema.attributes)
-      .map((s) => {
-        if (s._id !== attr._id) {
-          return s
+  persist (state, { schema }) {
+    if (schema._id) {
+      state.collection = _.map(state.collection, (s) => {
+        if (s._id === schema._id) {
+          return schema
         } else {
-          return attr
+          return s
         }
       })
-      .value()
+    } else {
+      schema._id = 'schema_' + Math.floor((Math.random() * 100000000000000) + 1)
+      state.collection.push(schema)
+    }
 
-    // Clears state.selectedAttribute step
-    state.selectedAttribute = null
-  },
-  create (state, { schema }) {
-    state.collection.push(_.cloneDeep(schema))
-    console.log('SUBMIT SUBMIT SUBTMIS???')
-    window.location = '/#/schemas'
-  },
-  update (state, { schema }) {
-    state.collection = _.map(state.collection, (s) => {
-      if (s._id === schema._id) {
-        return schema
-      } else {
-        return s
-      }
-    })
-    window.location = '/#/schemas'
+    window.location = '#/schemas'
   },
   destroy (state, { schema }) {
     state.collection = _.filter(state.collection, (s) => { return s._id !== schema._id })
   },
   selectAttribute (state, { attr }) {
     state.selectedAttribute = _.cloneDeep(attr)
+  },
+  selectSchema (state, { _id }) {
+    state.selectedSchema = _.cloneDeep(_.find(state.collection, { _id }))
+  },
+  clearSelectedSchema (state) {
+    state.selectedSchema = null
   },
   clearSelectedAttribute (state) {
     state.selectedAttribute = null
@@ -65,6 +48,9 @@ const mutations = {
       label: '',
       help: '',
       required: false,
+      unique: false,
+      preferred: false,
+      col_span: 6,
       datatype: 'TEXT',
       datatypeOptions: {}
     }

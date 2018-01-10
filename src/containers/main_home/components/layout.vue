@@ -1,36 +1,162 @@
-<template lang='pug'>
-  .row.h-100.align-items-center
-    .col-lg-12
+<template>
 
-      //- .row.my-4
-      //-   .col-lg-12.text-center
-      //-     img.welcome-logo(src='/static/icon_white.svg')
+  <div class="row h-100 align-items-center">
+    <div class="col-lg-12">
 
-      .row.my-4
-        .col-lg-12.text-center
-          p.welcome-text WELCOME
+      <div class="row my-2">
+        <div class="col-lg-12 text-center">
+          <p class="welcome-text">WELCOME</p>
+        </div>
+      </div>
 
-      .row.my-4
-        .col-lg-12.text-center
-          p.lead
-            a(href='https://github.com/aeksco', target='_blank')  HotSheets
-            |  is an open-source platform for building on-the-fly user interfaces for tabular data.
+      <div class="row my-2">
+        <div class="col-lg-12 text-center">
+          <p class="lead"><a href="https://github.com/aeksco" target="_blank"> HotSheets</a> is an open-source tool for building on-the-fly user interfaces for collecting tabular data.</p>
+        </div>
+      </div>
 
-      .row.py-2
-        .col-lg-12.text-center
-          p.lead Define your schema and its attributes - HotSheets does the rest.
+      <div class="row py-2">
+        <div class="col-lg-12 text-center">
+          <p class="lead">Define your schema and its attributes - HotSheets does the rest.</p>
+        </div>
+      </div>
 
-      .row.justify-content-center
-        .col-lg-4
-          a.btn.btn-light.btn-block.btn-lg(href='/#/schemas')
-            i.fa.fa-fw.fa-list-alt.mr-2
-            | Let's get started.
+      <div class="row py-2 justify-content-center">
+        <div class="col-lg-6">
+
+          <b-carousel id="carousel1" :interval="4000" img-width="1024" img-height="480">
+
+            <!-- Text slides with image -->
+            <b-carousel-slide :img-blank="true">
+              <div class="card card-body bg-dark text-light border-light">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h2 class='text-left'>Work Order</h2>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <table class="table table-striped table-hover">
+                      <tbody>
+                        <tr>
+                          <td class='text-left'>
+                            <strong>Job ID</strong>
+                          </td>
+                          <td>wo_002817</td>
+                        </tr>
+                        <tr>
+                          <td class='text-left'>
+                            <strong>...</strong>
+                          </td>
+                          <td>...</td>
+                        </tr>
+                        <tr>
+                          <td class='text-left'>
+                            <strong>...</strong>
+                          </td>
+                          <td>...</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </b-carousel-slide>
+
+            <b-carousel-slide :img-blank="true">
+              <div class="card card-body bg-dark text-light border-light">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h2 class='text-left'>Contact</h2>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <table class="table table-striped table-hover">
+                      <tbody>
+                        <tr>
+                          <td class='text-left'>
+                            <strong>Name</strong>
+                          </td>
+                          <td>John Doe</td>
+                        </tr>
+                        <tr>
+                          <td class='text-left'>
+                            <strong>...</strong>
+                          </td>
+                          <td>...</td>
+                        </tr>
+                        <tr>
+                          <td class='text-left'>
+                            <strong>...</strong>
+                          </td>
+                          <td>...</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </b-carousel-slide>
+
+            <b-carousel-slide :img-blank="true">
+              <div class="card card-body bg-dark text-light border-light">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h2 class='text-left'>Invoice</h2>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <table class="table table-striped table-hover">
+                      <tbody>
+                        <tr>
+                          <td class='text-left'>
+                            <strong>Amount</strong>
+                          </td>
+                          <td>$4800.00</td>
+                        </tr>
+                        <tr>
+                          <td class='text-left'>
+                            <strong>...</strong>
+                          </td>
+                          <td>...</td>
+                        </tr>
+                        <tr>
+                          <td class='text-left'>
+                            <strong>...</strong>
+                          </td>
+                          <td>...</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </b-carousel-slide>
+
+          </b-carousel>
+
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-4"><a href="#/schemas" class="btn btn-light btn-block btn-lg"><i class="fa fa-fw fa-list-alt mr-2"></i>Let's get started.</a></div>
+      </div>
+
+    </div>
+  </div>
 
 </template>
 
 <script>
   export default {
-    name: 'main_home'
+    name: 'main_home',
+    computed: {
+    }
   }
 </script>
 

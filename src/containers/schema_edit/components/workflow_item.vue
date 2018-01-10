@@ -7,7 +7,7 @@
         <i class="fa fa-lg fa-fw fa-bars mr-3"></i>
       </div>
 
-      <div class="col-lg-8">
+      <div class="col-lg-5">
 
         <!-- TEXT -->
         <span class="badge" v-if="item.datatype === 'TEXT'">
@@ -39,20 +39,21 @@
           {{item.label}}
         </span>
 
-        <!-- MACRO PREVIEW -->
-        <span class="d-flex" v-if="item.datatype === 'MACRO'">
-          <span class="badge">
-            <i class="fa fa-cogs mr-2"></i>
-          </span>
+      </div>
 
-          <span class="d-flex align-items-center" v-for="m, i in item.value" v-bind:key="m.id">
-            <span class="badge bordered border-warning" v-if='m.position === 1'>{{m.key}}</span>
-            <span class="badge bordered border-info" v-if='m.position === 2'>{{m.key}}</span>
-            <span class="badge bordered border-success" v-if='m.position === 3'>{{m.key}}</span>
-            <i class="fa fa-fw fa-plus mx-1" v-if="i < item.value.length - 1"></i>
-          </span>
+      <div class="col-lg-3">
+        <!-- REQUIRED -->
+        <span class="badge" v-if="item.required" v-b-tooltip.hover.top title="Required">
+          <i class="fa fa-asterisk text-danger"></i>
         </span>
-
+        <!-- UNIQUE -->
+        <span class="badge" v-if="item.unique" v-b-tooltip.hover.top title="Unique">
+          <i class="fa fa-snowflake-o text-info"></i>
+        </span>
+        <!-- PREFERRED -->
+        <span class="badge" v-if="item.preferred" v-b-tooltip.hover.top title="Preferred">
+          <i class="fa fa-star-o text-warning"></i>
+        </span>
       </div>
 
       <div class="col-lg-3 text-right controls"
