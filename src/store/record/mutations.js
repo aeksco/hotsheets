@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import router from '@/routers'
 // import { TEXT_WORKFLOW_STEP, MACRO_WORKFLOW_STEP, DELAY_WORKFLOW_STEP, KEY_WORKFLOW_STEP, KEY_DN_POSITION, KEY_UP_POSITION, KEY_PR_POSITION } from './constants'
 
 // // // //
@@ -22,7 +23,7 @@ const mutations = {
       state.collection.push(record)
     }
 
-    window.location = '#/schemas/' + schema._id
+    return router.go(-1)
   },
   destroy (state, { record }) {
     state.collection = _.filter(state.collection, (s) => { return s._id !== record._id })
