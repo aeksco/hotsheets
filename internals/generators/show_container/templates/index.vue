@@ -10,12 +10,12 @@ import LayoutView from './components/layout.vue'
 import store from '@/store'
 
 export default {
-  name: '<%= resource_name %>_show',
+  name: '<%= schema.identifier %>_show',
   components: {
     LayoutView
   },
   metaInfo: {
-    title: '<%= resource_name %>s - Show' // title is now "RCOS - Loading..."
+    title: '<%= schema.label %>s - Show'
   },
   props: ['id'],
   created () {
@@ -23,12 +23,12 @@ export default {
   },
   methods: {
     fetch () {
-      return store.dispatch('<%= resource_name %>/fetchModel', this.id)
+      return store.dispatch('<%= schema.identifier %>/fetchModel', this.id)
     }
   },
   computed: {
     model () {
-      return store.getters['<%= resource_name %>/current']
+      return store.getters['<%= schema.identifier %>/current']
     }
   }
 }
