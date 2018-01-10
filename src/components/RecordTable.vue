@@ -1,12 +1,6 @@
 
 <template>
-  <!--   <vue-good-table
-      title="Demo Table"
-      :columns="table.columns"
-      :rows="table.rows"
-      :paginate="true"
-      :lineNumbers="true"
-    /> -->
+  <!-- <vue-good-table :columns="table.columns" :rows="table.rows" :paginate="true" :lineNumbers="true" /> -->
 
   <table class="table table-striped table-hover">
     <thead>
