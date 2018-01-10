@@ -68,6 +68,7 @@
                 </button>
 
                 <!-- Bootstrap Modal Component -->
+                <!-- TODO - move this outside the scope of the loop, and instead pass only the options into a single instance -->
                 <b-modal :id="'modal_' + record._id"
                   :title="'Destroy ' + schema.label + '?'"
                   @ok="onConfirmDestroy(record)"

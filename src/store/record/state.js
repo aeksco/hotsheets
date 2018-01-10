@@ -58,7 +58,7 @@ const state = {
       schema_id: 'schema_85414304137721',
       attributes: {
         job_id: 'JB_00001',
-        client: 'rec_32976293799615',
+        contact_id: 'rec_32976293799615',
         invoice: 'rec_50813637509925',
         status: 'Completed'
       }
@@ -68,7 +68,7 @@ const state = {
       schema_id: 'schema_85414304137721',
       attributes: {
         job_id: 'JB_00002',
-        client: 'rec_83122409943633',
+        contact_id: 'rec_83122409943633',
         invoice: 'rec_56277813766977',
         status: 'In-Progress'
       }

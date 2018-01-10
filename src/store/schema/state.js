@@ -6,6 +6,16 @@ const state = {
       label: 'Contact',
       identifier: 'contact',
       _id: 'schema_29321443037762',
+      relations: [
+        {
+          type: 'HAS_MANY',
+          schema_id: 'schema_22881179555990'
+        },
+        {
+          type: 'HAS_MANY',
+          schema_id: 'schema_85414304137721'
+        }
+      ],
       attributes: [
         {
           order: 0,
@@ -47,6 +57,7 @@ const state = {
       label: 'Invoice',
       identifier: 'invoice',
       _id: 'schema_22881179555990',
+      relations: [],
       attributes: [
         {
           order: 0,
@@ -110,6 +121,7 @@ const state = {
       label: 'Job',
       identifier: 'job',
       _id: 'schema_85414304137721',
+      relations: [],
       attributes: [
         {
           order: 1,
@@ -124,15 +136,15 @@ const state = {
         },
         {
           order: 2,
-          label: 'Client',
-          help: 'Client for whom the Job is being done',
+          label: 'Contact',
+          help: 'Contact for whom the Job is being done',
           required: true,
           datatype: 'SCHEMA',
           datatypeOptions: {
             schema_id: 'schema_29321443037762',
             schema_attribute_identifier: 'name'
           },
-          identifier: 'client',
+          identifier: 'contact_id',
           _id: 'attr_2'
         },
         {
