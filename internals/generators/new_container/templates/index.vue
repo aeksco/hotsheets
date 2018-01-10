@@ -9,12 +9,12 @@
 import LayoutView from './components/layout.vue'
 
 export default {
-  name: '<%= resource_name %>_new',
+  name: '<%= schema.identifier %>_new',
   components: {
     LayoutView
   },
   metaInfo: {
-    title: '<%= resource_name %>s - New' // title is now "TITLE - <%= resource_name %> - New"
+    title: '<%= schema.label %> - New' // title is now "TITLE - <%= schema.label %> - New"
   },
   data () {
     return {
