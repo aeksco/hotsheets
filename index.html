@@ -16,7 +16,9 @@
       function initGoogleApi() {
         console.info('Init Google API');
         setTimeout(() => {
-          if (window.onSheetApiLoaded) window.onSheetApiLoaded();
+          if (window.store) {
+            window.store.dispatch('auth/googleAuthenticate');
+          }
         }, 1000)
       }
     </script>
