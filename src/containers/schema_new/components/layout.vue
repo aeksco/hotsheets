@@ -18,64 +18,52 @@
 
               <hr>
 
-              <div class="form-group">
-                <label>
-                  Label
-                  <span class='text-danger'>*</span>
-                </label>
-                <small class="form-text text-muted">Example: 'Odd Job'<br>The human-readable name for a single entity of this schema.</small>
-                <input type="text" class="form-control" placeholder="Label" v-model="schema.label" >
+              <div class="row">
+                <div class="col-lg-12">
+
+                  <FormInput label="Label" placeholder="Label" example="Example: 'Odd Job'" v-model="schema.label" required="true" help="The human-readable name for a single entity of this schema." />
+
+                </div>
+                <div class="col-lg-12">
+
+                  <FormInput label="Plural Label" placeholder="Plural Label" example="Example: 'Odd Jobs'" v-model="schema.label_plural" required="true" help="The plural version of the Label attribute." />
+
+                </div>
               </div>
 
-              <div class="form-group">
-                <label>
-                  Plural Label
-                  <span class='text-danger'>*</span>
-                </label>
-                <small class="form-text text-muted">Example: 'Odd Jobs'<br>The plural version of the Label attribute.</small>
-                <input type="text" class="form-control" placeholder="Plural Label" v-model="schema.label_plural" >
-              </div>
+              <div class="row">
+                <div class="col-lg-12">
 
-              <div class="form-group">
-                <label>
-                  Identifier
-                  <span class='text-danger'>*</span>
-                </label>
-                <small class="form-text text-muted">Example: 'odd_job'<br>The lowercase-only version of the identifier with spaces instead of underscores.</small>
-                <input type="text" class="form-control" placeholder="Identifier" v-model="schema.identifier" >
-              </div>
+                  <FormInput label="Identifier" placeholder="Identifier" example="Example: 'odd_job'" v-model="schema.identifier" required="true" help="The lowercase-only version of the identifier with spaces instead of underscores." />
 
-              <div class="form-group">
-                <label>
-                  Plural Identifier
-                  <span class='text-danger'>*</span>
-                </label>
-                <small class="form-text text-muted">Example: 'odd_jobs'<br>The plural version Identifier attribute.</small>
-                <input type="text" class="form-control" placeholder="Plural Identifier" v-model="schema.plural_identifier" >
+                </div>
+
+                <div class="col-lg-12">
+                  <FormInput label="Plural Identifier" placeholder="Plural Identifier" example="Example: 'odd_jobs'" v-model="schema.plural_identifier" required="true" help="The plural version Identifier attribute." />
+                </div>
+
+                <div class="col-lg-12">
+                  <FormInput label="Unique ID Prefix" placeholder="Unique ID Prefix" example="Example: 'OJ_'" v-model="schema.unqiue_id_prefix" required="true" help="A prefix used when generating unique IDs for this schema." />
+                </div>
+
               </div>
 
               <!-- unqiue_id_prefix -->
 
               <div class="row">
                 <div class="col-lg-6">
-                  <div class="form-group">
-                    <label>
-                      Icon
-                    </label>
-                    <small class="form-text text-muted">Example: 'fa-globe'<br>The name of a FontAwesome icon element.</small>
-                    <input type="text" class="form-control" placeholder="Icon" v-model="schema.display.icon" >
-                  </div>
+
+                  <FormInput label="Icon" placeholder="Icon" example="Example: 'fa-globe'" v-model="schema.display.icon" help="The name of a FontAwesome icon element." />
+
                 </div>
                 <div class="col-lg-6">
-                  <div class="form-group">
-                    <label>
-                      Navbar Link
-                    </label>
-                    <small class="form-text text-muted"><br>Whether or not the schema has a header link.</small>
-                    <input type="checkbox" class="form-control" v-model="schema.display.navbar_link" >
-                  </div>
+
+                  <FormInput label="Navbar Link" type="BOOL" v-model="schema.display.navbar_link" help="Whether or not the schema has a header link." />
+
                 </div>
               </div>
+
+
 
             </div>
           </div>
@@ -109,13 +97,15 @@ import store from '@/store'
 import draggable from 'vuedraggable'
 import AttributeItem from '../../schema_edit/components/workflow_item'
 import AttributeForm from './AttributeForm'
+import FormInput from '@/components/FormInput'
 
 export default {
   props: ['schema'],
   components: {
     draggable,
     AttributeItem,
-    AttributeForm
+    AttributeForm,
+    FormInput
   },
   beforeMount () {
     store.commit('schema/clearSelectedAttribute')
