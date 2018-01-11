@@ -106,12 +106,16 @@
           <label>Type</label>
           <small class="form-text text-muted">The type of data represented by this attribute.</small>
           <select class="form-control" placeholder="Datatype" v-model="selectedAttr.datatype" >
-            <option value='TEXT'>Text</option>
-            <option value='DATE'>Date</option>
-            <option value='BOOL'>Checkbox</option>
-            <option value='NUMBER'>Number</option>
-            <option value='SCHEMA'>Belongs To</option>
-            <option value='HAS_MANY'>Has Many</option>
+            <optgroup label="Basics">
+              <option value='TEXT'>Text</option>
+              <option value='DATE'>Date</option>
+              <option value='BOOL'>Checkbox</option>
+              <option value='NUMBER'>Number</option>
+            </optgroup>
+            <optgroup label="Relations">
+              <option value='SCHEMA'>Belongs To</option>
+              <option value='HAS_MANY'>Has Many</option>
+            </optgroup>
             <!-- <option value='TEXT_SELECT'>Text Select</option> -->
             <!-- <option value='NUMBER_SELECT'>Number Select</option> -->
             <!-- <option value='CURRENCY'>Currency</option> -->
