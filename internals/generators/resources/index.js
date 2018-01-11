@@ -187,7 +187,7 @@ module.exports = class extends Generator {
     }
 
     // Logs instructions to the user
-    console.log(`\n\n Done! \n Add the following lines to /src/store/index.js: \n\n \t import ${resourceSchema.plural_identifier} from './${resourceSchema.plural_identifier}'\n\n and add the '${resourceSchema.plural_identifier}' variable to the Vuex store's 'modules' object. \n\n`)
+    console.log(`\n\n Done! \n Add the following lines to /src/store/index.js: \n\n \t import ${resourceSchema.identifier_plural} from './${resourceSchema.identifier_plural}'\n\n and add the '${resourceSchema.identifier_plural}' variable to the Vuex store's 'modules' object. \n\n`)
 
     // Logs instructions
     let import_snippet = `import { ${resourceSchema.label}ListRoute, ${resourceSchema.label}ShowRoute, ${resourceSchema.label}NewRoute, ${resourceSchema.label}EditRoute } from './${resourceSchema.label}'`

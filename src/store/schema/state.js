@@ -107,7 +107,7 @@ const state = {
         }
       ],
       label_plural: 'Contacts',
-      plural_identifier: 'contacts'
+      identifier_plural: 'contacts'
     },
     {
       label: 'Invoice',
@@ -175,7 +175,7 @@ const state = {
         }
       ],
       label_plural: 'Invoices',
-      plural_identifier: 'invoice'
+      identifier_plural: 'invoice'
     },
     {
       label: 'Job',
@@ -240,7 +240,7 @@ const state = {
         }
       ],
       label_plural: 'Jobs',
-      plural_identifier: 'jobs'
+      identifier_plural: 'jobs'
     },
     {
       label: 'Contact Information',
@@ -296,7 +296,7 @@ const state = {
         }
       ],
       label_plural: 'Contact Information',
-      plural_identifier: 'contact_infos'
+      identifier_plural: 'contact_infos'
     }
   ],
   selectedAttribute: null

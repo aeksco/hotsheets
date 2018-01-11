@@ -10,7 +10,7 @@
 
         <!-- New Button -->
   			<ul class="list-group mt-2 mb-4 text-center">
-  				<a class="list-group-item" href="#/<%= schema.plural_identifier %>/new">NEW</a>
+  				<a class="list-group-item" href="#/<%= schema.identifier_plural %>/new">NEW</a>
   			</ul>
 
         <!-- Fetching -->

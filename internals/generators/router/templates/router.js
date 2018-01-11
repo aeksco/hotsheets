@@ -5,23 +5,23 @@ import <%= schema.label %>Show from '@/containers/<%= schema.identifier %>_show'
 import <%= schema.label %>Edit from '@/containers/<%= schema.identifier %>_edit'
 
 export const <%= schema.label %>ListRoute = {
-  path: '/<%= schema.plural_identifier %>',
+  path: '/<%= schema.identifier_plural %>',
   component: <%= schema.label %>List
 }
 
 export const <%= schema.label %>NewRoute = {
-  path: '/<%= schema.plural_identifier %>/new',
+  path: '/<%= schema.identifier_plural %>/new',
   component: <%= schema.label %>New
 }
 
 export const <%= schema.label %>ShowRoute = {
-  path: '/<%= schema.plural_identifier %>/:id',
+  path: '/<%= schema.identifier_plural %>/:id',
   component: <%= schema.label %>Show,
   props: true
 }
 
 export const <%= schema.label %>EditRoute = {
-  path: '/<%= schema.plural_identifier %>/:id/edit',
+  path: '/<%= schema.identifier_plural %>/:id/edit',
   component: <%= schema.label %>Edit,
   props: true
 }

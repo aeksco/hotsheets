@@ -4,10 +4,16 @@ import _ from 'lodash'
 const getters = {
   new: state => {
     let schema = {
-      label: '',
-      identifier: '',
       _id: null,
-      attributes: []
+      label: '',
+      label_plural: '',
+      identifier: '',
+      identifier_plural: '',
+      attributes: [],
+      display: {
+        icon: 'fa-square-o',
+        navbar_link: true
+      }
     }
     return _.cloneDeep(schema)
   },

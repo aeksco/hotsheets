@@ -1,7 +1,7 @@
 
 <template>
   <div class="container">
-    <a :href="'#/<%= schema.plural_identifier %>/' + id">Back</a>
+    <a :href="'#/<%= schema.identifier_plural %>/' + id">Back</a>
     <h2><%= schema.label %> Edit - {{model.name}}</h2>
     <hr>
 

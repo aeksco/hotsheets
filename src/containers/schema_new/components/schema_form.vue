@@ -163,7 +163,7 @@
                   <span class='text-danger'>*</span>
                 </label>
                 <small class="form-text text-muted">The plural version Identifier attribute. Example: 'odd_jobs'</small>
-                <input type="text" class="form-control" placeholder="Plural Identifier" v-model="schema.plural_identifier" >
+                <input type="text" class="form-control" placeholder="Plural Identifier" v-model="schema.identifier_plural" >
               </div>
 
             </div>

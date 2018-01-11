@@ -1,12 +1,12 @@
 g
 <template>
   <div class="container">
-    <a href="#/<%= schema.plural_identifier %>">Back</a>
+    <a href="#/<%= schema.identifier_plural %>">Back</a>
     <h2><%= schema.label %> Show - {{model.name}}</h2>
   	<hr>
 
     <!-- Edit Link -->
-  	<a class='btn btn-secondary' :href="'#/<%= schema.plural_identifier %>/' + model._id + '/edit'">
+  	<a class='btn btn-secondary' :href="'#/<%= schema.identifier_plural %>/' + model._id + '/edit'">
       Edit <%= schema.label %>
     </a>
 

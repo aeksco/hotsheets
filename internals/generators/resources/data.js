@@ -37,5 +37,5 @@ module.exports = {
     }
   ],
   label_plural: 'Contact',
-  plural_identifier: 'contacts'
+  identifier_plural: 'contacts'
 }

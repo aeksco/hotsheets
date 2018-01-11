@@ -1,7 +1,7 @@
 
 <template>
   <div class="container">
-    <a href="#/<%= schema.plural_identifier %>">Back</a>
+    <a href="#/<%= schema.identifier_plural %>">Back</a>
     <h2><%= schema.label %> - New</h2>
     <hr>
 

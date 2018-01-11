@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="col-lg-12">
-                  <FormInput label="Plural Identifier" placeholder="Plural Identifier" example="Example: 'odd_jobs'" v-model="schema.plural_identifier" required="true" help="The plural version Identifier attribute." />
+                  <FormInput label="Plural Identifier" placeholder="Plural Identifier" example="Example: 'odd_jobs'" v-model="schema.identifier_plural" required="true" help="The plural version Identifier attribute." />
                 </div>
 
                 <div class="col-lg-12">
