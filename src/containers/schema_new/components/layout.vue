@@ -54,6 +54,29 @@
                 <input type="text" class="form-control" placeholder="Plural Identifier" v-model="schema.plural_identifier" >
               </div>
 
+              <!-- unqiue_id_prefix -->
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label>
+                      Icon
+                    </label>
+                    <small class="form-text text-muted">Example: 'fa-globe'<br>The name of a FontAwesome icon element.</small>
+                    <input type="text" class="form-control" placeholder="Icon" v-model="schema.display.icon" >
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label>
+                      Navbar Link
+                    </label>
+                    <small class="form-text text-muted"><br>Whether or not the schema has a header link.</small>
+                    <input type="checkbox" class="form-control" v-model="schema.display.navbar_link" >
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 

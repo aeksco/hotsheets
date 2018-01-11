@@ -3,7 +3,10 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
-        <h2>{{schema.label_plural}}</h2>
+        <h2>
+          <i :class="'fa fa-fw ' + schema.display.icon" v-if="schema.display.icon"></i>
+          {{schema.label_plural}}
+        </h2>
       </div>
 
       <div class="col-lg-4 text-right">

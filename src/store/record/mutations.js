@@ -19,7 +19,7 @@ const mutations = {
         }
       })
     } else {
-      record._id = 'rec_' + Math.floor((Math.random() * 100000000000000) + 1)
+      record._id = schema.unqiue_id_prefix + Math.floor((Math.random() * 100000000000000) + 1)
       state.collection.push(record)
     }
 

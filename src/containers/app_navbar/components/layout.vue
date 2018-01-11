@@ -13,7 +13,7 @@
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav mr-auto">
 
-        <li class="nav-item" v-for="s in allSchemas" :key="s._id">
+        <li class="nav-item" v-for="s in navSchemas" :key="s._id">
           <a class="nav-link" :href="'#/schemas/' + s._id ">{{s.label_plural}}</a>
         </li>
 
@@ -41,14 +41,15 @@
 </template>
 
 <script>
+import _ from 'lodash'
 import store from '@/store'
 
 // TODO - this should be split into a series of smaller components
 export default {
   name: 'Navbar',
   computed: {
-    allSchemas () {
-      return store.getters['schema/collection']
+    navSchemas () {
+      return _.filter(store.getters['schema/collection'], (s) => { return s.display.navbar_link })
     }
   }
 }

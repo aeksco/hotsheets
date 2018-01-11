@@ -6,6 +6,11 @@ const state = {
       label: 'Contact',
       identifier: 'contact',
       _id: 'schema_29321443037762',
+      unqiue_id_prefix: 'CT_',
+      display: {
+        navbar_link: true,
+        icon: 'fa-user-circle-o'
+      },
       attributes: [
         {
           order: 0,
@@ -108,6 +113,11 @@ const state = {
       label: 'Invoice',
       identifier: 'invoice',
       _id: 'schema_22881179555990',
+      unqiue_id_prefix: 'IV_',
+      display: {
+        navbar_link: true,
+        icon: 'fa-usd'
+      },
       attributes: [
         {
           order: 0,
@@ -171,6 +181,11 @@ const state = {
       label: 'Job',
       identifier: 'job',
       _id: 'schema_85414304137721',
+      unqiue_id_prefix: 'JB_',
+      display: {
+        navbar_link: true,
+        icon: 'fa-list-alt'
+      },
       attributes: [
         {
           order: 1,
@@ -181,6 +196,7 @@ const state = {
           datatypeOptions: {},
           identifier: 'job_id',
           unique: true,
+          col_span: 6,
           _id: 'attr_1'
         },
         {
@@ -194,6 +210,7 @@ const state = {
             schema_attribute_identifier: 'name'
           },
           identifier: 'contact_id',
+          col_span: 6,
           _id: 'attr_2'
         },
         {
@@ -207,6 +224,7 @@ const state = {
             schema_attribute_identifier: 'invoice_id'
           },
           identifier: 'invoice_id',
+          col_span: 6,
           _id: 'attr_3'
         },
         {
@@ -217,6 +235,7 @@ const state = {
           datatype: 'TEXT',
           datatypeOptions: {},
           identifier: 'status',
+          col_span: 6,
           _id: 'attr_4'
         }
       ],
@@ -227,6 +246,11 @@ const state = {
       label: 'Contact Information',
       identifier: 'contact_info',
       _id: 'schema_10301016043421',
+      unqiue_id_prefix: 'CI_',
+      display: {
+        navbar_link: false,
+        icon: 'fa-phone-square'
+      },
       attributes: [
         {
           order: 1,
