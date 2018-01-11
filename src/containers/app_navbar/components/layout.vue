@@ -26,6 +26,19 @@
 	    </ul>
 
 	    <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item" v-if="!isAuthenticated">
+          <a class="nav-link" href="#/auth/login">Login</a>
+        </li>
+
+        <li class="nav-item" v-if="currentUser.displayName">
+          <a class="nav-link" href="#/user/profile">
+            <img class='profile' :src="currentUser.image.url">
+            <!-- {{currentUser.displayName}} -->
+            Profile
+          </a>
+        </li>
+
         <b-nav-item-dropdown text="Admin" right>
           <b-dropdown-item href="#/applications">Applications</b-dropdown-item>
           <b-dropdown-item href="#/schemas">Schemas</b-dropdown-item>
@@ -51,12 +64,24 @@ export default {
   computed: {
     navSchemas () {
       return _.filter(store.getters['schema/collection'], (s) => { return s.display.navbar_link })
+    },
+    currentUser () {
+      return store.getters['auth/currentUser']
+    },
+    isAuthenticated () {
+      return store.getters['auth/isAuthenticated']
     }
   }
 }
 </script>
 
 <style lang="sass">
+
+  img.profile
+    height: 1.5rem
+    width: 1.5rem
+    border-radius: 1rem
+    border: 1px solid #999999
 
   .navbar-brand
     letter-spacing: .25rem !important

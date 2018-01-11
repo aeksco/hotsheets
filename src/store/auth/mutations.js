@@ -1,3 +1,5 @@
+import store from '@/store'
+import router from '@/routers'
 
 // Project Module mutations
 const mutations = {
@@ -19,10 +21,12 @@ const mutations = {
 
   googleAuthenticated (state, status) {
     state.googleAuthenticated = status
+    store.dispatch('auth/getGoogleUser')
   },
 
   googleUser (state, user) {
     state.googleUser = user
+    router.push('/')
   }
 }
 
