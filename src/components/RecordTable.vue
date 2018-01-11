@@ -4,7 +4,7 @@
 
   <table class="table table-striped table-hover">
     <thead>
-      <th v-for="attr in schema.attributes" v-bind:key="attr._id">
+      <th v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype !=='HAS_MANY'">
         {{attr.label}}
         <i class="fa fa-fw fa-question-circle-o" v-b-tooltip.hover.bottom :title="attr.help" ></i>
       </th>
@@ -12,10 +12,10 @@
     </thead>
     <tbody>
 
-      <tr v-for="record in records" v-bind:key="record._id">
+      <tr v-for="record in records" :key="record._id">
 
         <!-- Record Data -->
-        <td v-for="attr in schema.attributes" v-bind:key="attr._id">
+        <td v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype !== 'HAS_MANY'">
           <a v-if="attr.datatype === 'SCHEMA'" :href="getLinkedSchemaHref(attr, record.attributes[attr.identifier])">
             {{ getLinkedSchemaLabel(attr, record.attributes[attr.identifier]) }}
           </a>

@@ -27,6 +27,12 @@
           {{item.label}}
         </span>
 
+        <!-- HAS_MANY -->
+        <span class="badge" v-if="item.datatype === 'HAS_MANY'">
+          <i class="fa fa-link mr-2"></i>
+          {{item.label}}
+        </span>
+
         <!-- DATE -->
         <span class="badge" v-if="item.datatype === 'DATE'">
           <i class="fa fa-calendar-o mr-2"></i>

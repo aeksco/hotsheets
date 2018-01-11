@@ -84,10 +84,10 @@ const state = {
           label: 'Contact',
           help: 'Contact to whom the invoice has been sent.',
           required: true,
-          datatype: 'SCHEMA',
+          datatype: 'SCHEMA', // TODO - replace with 'BELONGS_TO' or 'HAS_ONE'
           datatypeOptions: {
             schema_id: 'schema_29321443037762',
-            schema_attribute_identifier: 'name'
+            schema_attribute_identifier: 'name' // TODO - this will always be Schemas.find(schema_id).identifier + '_id'
           },
           identifier: 'contact_id',
           _id: 'attr_1'
@@ -157,10 +157,10 @@ const state = {
           label: 'Contact',
           help: 'Contact for whom the Job is being done',
           required: true,
-          datatype: 'SCHEMA',
+          datatype: 'SCHEMA', // TODO - replace with 'BELONGS_TO' or 'HAS_ONE'
           datatypeOptions: {
             schema_id: 'schema_29321443037762',
-            schema_attribute_identifier: 'name'
+            schema_attribute_identifier: 'name' // TODO - this will always be Schemas.find(schema_id).identifier + '_id'
           },
           identifier: 'contact_id',
           _id: 'attr_2'
@@ -170,7 +170,7 @@ const state = {
           label: 'Invoice',
           help: 'Invoice for this Job',
           required: false,
-          datatype: 'SCHEMA',
+          datatype: 'SCHEMA', // TODO - replace with 'BELONGS_TO' or 'HAS_ONE'
           datatypeOptions: {
             schema_id: 'schema_22881179555990',
             schema_attribute_identifier: 'invoice_id'

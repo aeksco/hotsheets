@@ -24,7 +24,7 @@
                 <tbody>
                   <tr v-for="attr in schema.attributes" :key="attr._id">
                     <td class='text-left'>
-                      <strong>
+                      <strong v-if="attr.datatype !=='HAS_MANY'">
                         {{attr.label}}
                       </strong>
                     </td>
@@ -36,7 +36,7 @@
                         <i class="fa fa-fw fa-check-square-o" v-if="record.attributes[attr.identifier]"></i>
                         <i class="fa fa-fw fa-square-o" v-if="!record.attributes[attr.identifier]"></i>
                       </span>
-                      <span v-else>{{record.attributes[attr.identifier]}}</span>
+                      <span v-if="attr.datatype !== 'HAS_MANY'">{{record.attributes[attr.identifier]}}</span>
                     </td>
                   </tr>
                 </tbody>
@@ -48,24 +48,24 @@
       </div>
     </div>
 
-    <div class="row mt-4" v-for="rel in schema.relations" :key="rel._id" v-if="rel.type === 'HAS_MANY'">
+    <div class="row mt-4" v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype === 'HAS_MANY'">
 
       <!-- Relation Viewer -->
       <div class="col-lg-12">
         <div class="card card-body bg-dark color-light border-light">
           <div class="row">
             <div class="col-lg-8">
-              <p class="lead mb">Related {{ relatedSchemaName(rel) }}</p>
+              <p class="lead mb">Related {{ relatedSchemaName(attr) }}</p>
             </div>
             <div class="col-lg-4 text-right">
-              <a class="btn btn-outline-success btn-sm" :href="'#/schemas/' + relatedSchema(rel)._id + '/records/new'">
+              <a class="btn btn-outline-success btn-sm" :href="'#/schemas/' + relatedSchema(attr)._id + '/records/new'">
                 <i class="fa fa-fw fa-plus mr-1"></i>
                 New
               </a>
             </div>
           </div>
 
-          <RecordTable :schema="relatedSchema(rel)" :records="getRelatedRecords(rel)"/>
+          <RecordTable :schema="relatedSchema(attr)" :records="getRelatedRecords(attr)"/>
         </div>
       </div>
 
@@ -103,40 +103,41 @@ export default {
       let identifier = attr.datatypeOptions.schema_attribute_identifier
       return record.attributes[identifier]
     },
-    relatedSchema (relation) { // TODO - this should be moved into a getter
+    relatedSchema (attr) { // TODO - this should be moved into a getter
       let allSchemas = store.getters['schema/collection']
-      let relatedSchema = _.find(allSchemas, { _id: relation.schema_id })
+      let relatedSchema = _.find(allSchemas, { _id: attr.datatypeOptions.schema_id })
       return relatedSchema
     },
-    relatedSchemaName (relation) { // TODO - this should be moved into a getter
+    relatedSchemaName (attr) { // TODO - this should be moved into a getter
       let allSchemas = store.getters['schema/collection']
-      let relatedSchema = _.find(allSchemas, { _id: relation.schema_id })
-      if (relation.type === 'HAS_MANY') {
+      let relatedSchema = _.find(allSchemas, { _id: attr.datatypeOptions.schema_id })
+      if (attr.type === 'HAS_MANY') {
         return relatedSchema.label_plural
       } else {
         return relatedSchema.label
       }
     },
-    getRelatedRecords (relation) { // TODO - this should be moved into a getter
+    getRelatedRecords (attr) { // TODO - this should be moved into a getter
       let allSchemas = store.getters['schema/collection']
       let allRecords = store.getters['record/collection']
-      let relatedSchema = _.find(allSchemas, { _id: relation.schema_id })
+      let relatedSchema = _.find(allSchemas, { _id: attr.datatypeOptions.schema_id })
 
-      // TODO - handle other relation types
-      if (relation.type === 'HAS_MANY') {
+      // TODO - handle other attr types
+      if (attr.datatype === 'HAS_MANY') {
         let relatedRecords = _.filter(allRecords, (r) => {
           return r.schema_id === relatedSchema._id && r.attributes[`${this.schema.identifier}_id`] === this.record._id
         })
         return relatedRecords
       }
 
-      if (relation.type === 'BELONGS_TO') {
-        let relatedRecords = _.filter(allRecords, (r) => {
-          // return r.schema_id === relatedSchema._id && r.attributes[_id] === this.record._id
-          return r.schema_id === relatedSchema._id && this.record.attributes[`${relatedSchema.identifier}_id`] === r._id
-        })
-        return relatedRecords
-      }
+      // NOTE - not used now, could be helpful later
+      // if (relation.type === 'BELONGS_TO') {
+      //   let relatedRecords = _.filter(allRecords, (r) => {
+      //     // return r.schema_id === relatedSchema._id && r.attributes[_id] === this.record._id
+      //     return r.schema_id === relatedSchema._id && this.record.attributes[`${relatedSchema.identifier}_id`] === r._id
+      //   })
+      //   return relatedRecords
+      // }
     }
   }
 }

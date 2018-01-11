@@ -43,6 +43,21 @@ const mutations = {
   removeAttribute (state, { schema, attr }) {
     schema.attributes = _.filter(schema.attributes, (s) => { return s._id !== attr._id })
   },
+  persistSelectedAttribute (state, { attr }) {
+    if (attr._id) {
+      state.selectedSchema.attributes = _.map(state.selectedSchema.attributes, (a) => { // QUESTION - just .map()
+        if (a._id === attr._id) {
+          return attr
+        } else {
+          return a
+        }
+      })
+    } else {
+      attr._id = 'attr_' + Math.floor((Math.random() * 100000000000000) + 1)
+      state.selectedSchema.attributes.push(attr)
+    }
+    state.selectedAttribute = null
+  },
   addAttribute (state, { schema }) {
     let new_attribute = {
       order: schema.attributes.length + 1,
