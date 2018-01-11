@@ -94,16 +94,12 @@
 
 <script>
 import store from '@/store'
-import draggable from 'vuedraggable'
-import AttributeItem from '../../schema_edit/components/workflow_item'
 import AttributeForm from './AttributeForm'
 import FormInput from '@/components/FormInput'
 
 export default {
   props: ['schema'],
   components: {
-    draggable,
-    AttributeItem,
     AttributeForm,
     FormInput
   },
