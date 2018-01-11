@@ -128,6 +128,7 @@ const state = {
           datatypeOptions: {},
           identifier: 'invoice_id',
           unique: true,
+          col_span: '6',
           _id: 'attr_5'
         },
         {
@@ -141,6 +142,7 @@ const state = {
             schema_attribute_identifier: 'name'
           },
           identifier: 'contact_id',
+          col_span: '6',
           _id: 'attr_1'
         },
         {
@@ -151,27 +153,30 @@ const state = {
           datatype: 'NUMBER',
           datatypeOptions: {},
           identifier: 'amount',
+          col_span: '4',
           _id: 'attr_2'
         },
         {
           order: 3,
-          label: 'Payment Received',
-          help: 'Indicates whether or not payment has been received.',
-          required: false,
-          datatype: 'BOOL',
-          datatypeOptions: {},
-          identifier: 'payment_received',
-          _id: 'attr_3'
-        },
-        {
-          order: 4,
           label: 'Date',
           help: 'Date the invoice was sent out.',
           required: true,
           datatype: 'DATE',
           datatypeOptions: {},
           identifier: 'date',
+          col_span: '4',
           _id: 'attr_4'
+        },
+        {
+          order: 4,
+          label: 'Payment Received',
+          help: 'Indicates whether or not payment has been received.',
+          required: false,
+          datatype: 'BOOL',
+          datatypeOptions: {},
+          identifier: 'payment_received',
+          col_span: '4',
+          _id: 'attr_3'
         }
       ],
       label_plural: 'Invoices',
@@ -259,7 +264,7 @@ const state = {
           required: true,
           unique: false,
           preferred: false,
-          col_span: 6,
+          col_span: 4,
           datatype: 'TEXT',
           datatypeOptions: {},
           identifier: 'type',
@@ -272,7 +277,7 @@ const state = {
           required: false,
           unique: false,
           preferred: false,
-          col_span: 6,
+          col_span: 4,
           datatype: 'TEXT',
           datatypeOptions: {},
           identifier: 'value',
@@ -285,7 +290,7 @@ const state = {
           required: false,
           unique: false,
           preferred: false,
-          col_span: 6,
+          col_span: 4,
           datatype: 'SCHEMA',
           datatypeOptions: {
             schema_id: 'schema_29321443037762',
