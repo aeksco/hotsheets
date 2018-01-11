@@ -11,7 +11,9 @@ const actions = {
     }).then((response) => {
       console.log('FETCHED SHEET')
       console.log(response)
-      commit('currentSheet', response)
+      if (response.result) {
+        commit('currentSheet', response.result)
+      }
     }, function (response) {
       console.error('Unable to fetch sheet list')
     })
