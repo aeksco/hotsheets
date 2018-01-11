@@ -48,13 +48,13 @@
       </div>
     </div>
 
-    <div class="row mt-4">
+    <div class="row">
       <!-- Relation Viewer -->
-      <div :class="'col-lg-' + attr.col_span" v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype === 'HAS_MANY'">
+      <div :class="'mt-4 col-lg-' + attr.col_span" v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype === 'HAS_MANY'">
         <div class="card card-body bg-dark color-light border-light">
           <div class="row">
             <div class="col-lg-8">
-              <p class="lead mb">Related {{ relatedSchemaName(attr) }}</p>
+              <p class="lead mb">{{ relatedSchemaName(attr) }}</p>
             </div>
             <div class="col-lg-4 text-right">
               <a class="btn btn-outline-success btn-sm" :href="'#/schemas/' + relatedSchema(attr)._id + '/records/new'">
