@@ -113,8 +113,9 @@
               <option value='DATE'>Date</option>
               <option value='TIME'>Time</option>
             </optgroup>
-            <!-- <optgroup label="Masked"> -->
-            <!-- </optgroup> -->
+            <optgroup label="Masked">
+              <option value='PHONE_NUMBER'>Phone Number</option>
+            </optgroup>
             <optgroup label="Relations">
               <option value='SCHEMA'>Belongs To</option>
               <option value='HAS_MANY'>Has Many</option>

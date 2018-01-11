@@ -45,6 +45,12 @@
           {{item.label}}
         </span>
 
+        <!-- PHONE_NUMBER -->
+        <span class="badge" v-if="item.datatype === 'PHONE_NUMBER'">
+          <i class="fa fa-phone mr-2"></i>
+          {{item.label}}
+        </span>
+
         <!-- BOOL -->
         <span class="badge" v-if="item.datatype === 'BOOL'">
           <i class="fa fa-check-square-o mr-2"></i>

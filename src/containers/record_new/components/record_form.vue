@@ -14,6 +14,8 @@
       <input type="time" class="form-control" :placeholder="attr.label" v-model="record.attributes[attr.identifier]" v-if="attr.datatype === 'TIME'">
       <input type="checkbox" class="form-control" v-model="record.attributes[attr.identifier]" v-if="attr.datatype === 'BOOL'">
       <input type="number" class="form-control" :placeholder="attr.label" v-model="record.attributes[attr.identifier]" v-if="attr.datatype === 'NUMBER'">
+      <masked-input class="form-control" :placeholder="attr.label" v-model="record.attributes[attr.identifier]" mask="\+\1 (111) 111-1111" v-if="attr.datatype === 'PHONE_NUMBER'"/>
+
       <select class="form-control" v-model="record.attributes[attr.identifier]" v-if="attr.datatype === 'SCHEMA'">
         <option v-for="rec in schemaDropdown(attr.datatypeOptions.schema_id)" :key="rec._id" :value="rec._id">{{ rec.attributes[attr.datatypeOptions.schema_attribute_identifier] }}</option>
       </select>
@@ -46,9 +48,13 @@
 import _ from 'lodash'
 import store from '@/store'
 import router from '@/routers'
+import MaskedInput from 'vue-masked-input'
 
 export default {
   props: ['schema', 'record'],
+  components: {
+    MaskedInput
+  },
   methods: {
     cancelForm () {
       router.go(-1)
