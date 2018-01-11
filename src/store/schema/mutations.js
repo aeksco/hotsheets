@@ -42,7 +42,9 @@ const mutations = {
     state.selectedAttribute = null
   },
   removeAttribute (state, { schema, attr }) {
+    // Updates schema.attributes
     schema.attributes = _.filter(schema.attributes, (s) => { return s._id !== attr._id })
+    // TODO - remove REVERSE RELATION
   },
   persistSelectedAttribute (state, { schema, attr }) {
     if (attr._id) {
@@ -57,6 +59,15 @@ const mutations = {
       attr._id = 'attr_' + Math.floor((Math.random() * 100000000000000) + 1)
       schema.attributes.push(_.cloneDeep(attr))
     }
+
+    // TODO - add REVERSE RELATION
+    // if (attr.datatype === 'BELONGS_TO') {
+    //   let relatedSchema = _.find(state.collection, { _id: attr.datatypeOptions.schema_id })
+    //   let relatedAttr = _.filter(relatedSchema.attributes, (a) => { return a.datatype === 'HAS_MANY' && a.datatypeOptions.schema_id === schema._id })
+    //   console.log(relatedAttr)
+    // }
+
+    // Clears the selectedAttribute
     state.selectedAttribute = null
   },
   addAttribute (state, { schema }) {
