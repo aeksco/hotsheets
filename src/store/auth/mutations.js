@@ -19,6 +19,10 @@ const mutations = {
 
   googleAuthenticated (state, status) {
     state.googleAuthenticated = status
+  },
+
+  googleUser (state, user) {
+    state.googleUser = user
   }
 }
 

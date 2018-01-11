@@ -80,14 +80,27 @@ const actions = {
       'scope': ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/userinfo.email'],
       'immediate': false
     }, (result) => {
-      console.log('AUTHENTICATED??')
       console.log(result)
       if (result.status.signed_in) {
         commit('googleAuthenticated', true)
       } else {
         commit('googleAuthenticated', false)
       }
-      // this.handleAuthResult(result)
+    })
+  },
+
+  // getGoogleUser
+  getGoogleUser: ({ commit }) => {
+    window.gapi.client.load('plus', 'v1', () => {
+      window.gapi.client.plus.people.get({
+        'userId': 'me'
+      }).execute((response) => {
+        if (response) {
+          console.info('Got user info')
+          console.log(response)
+          commit('googleUser', response)
+        }
+      })
     })
   }
 
