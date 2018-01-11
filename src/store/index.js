@@ -6,6 +6,7 @@ import user from './user'
 import schema from './schema'
 import record from './record'
 import notification from './notification'
+import application from './application'
 
 // Vuex Initialization
 // TODO - should this be done elsewhere?
@@ -19,7 +20,8 @@ export default new Vuex.Store({
     user,
     schema,
     record,
-    notification
+    notification,
+    application
   },
   plugins: [createPersistedState()]
 })
