@@ -32,7 +32,7 @@
         </td>
 
         <!-- Record Controls -->
-        <td class='text-right'>
+        <td class='text-right controls'>
 
           <!-- Edit Record -->
           <a class="btn btn-sm btn-outline-warning" :href=" '#/schemas/' + schema._id + '/records/' + record._id + '/edit' ">
@@ -135,4 +135,16 @@ export default {
 }
 </script>
 
+<style lang="sass">
+  table.table
+    tr
+      td.controls
+        opacity: 0
+
+      &:hover
+        td.controls
+          opacity: 1
+
+
+</style>
 

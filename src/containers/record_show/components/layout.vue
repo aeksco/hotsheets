@@ -59,7 +59,7 @@
             <div class="col-lg-4 text-right">
               <a class="btn btn-outline-success btn-sm" :href="'#/schemas/' + relatedSchema(attr)._id + '/records/new'">
                 <i class="fa fa-fw fa-plus mr-1"></i>
-                New
+                Add
               </a>
             </div>
           </div>
