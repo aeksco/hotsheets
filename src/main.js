@@ -4,10 +4,12 @@ import '@/config'
 import Vue from 'vue'
 import App from './App'
 import router from './routers'
-// import store from '@/store'
+import store from '@/store'
 
 // QUESTION - ??
 Vue.config.productionTip = false
+
+window.store = store // TODO - bebug only
 
 /* eslint-disable no-new */
 new Vue({

@@ -71,6 +71,24 @@ const actions = {
         console.log('Error fetching session')
       })
     })
+  },
+
+  // TODO - constantize `authorize` parameters
+  googleAuthenticate: ({ commit }) => {
+    window.gapi.auth.authorize({
+      'client_id': '540231188701-t4pjco404n921r9k347jo2dpp0pgell9.apps.googleusercontent.com',
+      'scope': ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/userinfo.email'],
+      'immediate': false
+    }, (result) => {
+      console.log('AUTHENTICATED??')
+      console.log(result)
+      if (result.status.signed_in) {
+        commit('googleAuthenticated', true)
+      } else {
+        commit('googleAuthenticated', false)
+      }
+      // this.handleAuthResult(result)
+    })
   }
 
 }

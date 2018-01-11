@@ -15,6 +15,10 @@ const mutations = {
 
   set_user (state, user) {
     state.user = user
+  },
+
+  googleAuthenticated (state, status) {
+    state.googleAuthenticated = status
   }
 }
 
