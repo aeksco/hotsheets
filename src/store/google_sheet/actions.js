@@ -38,7 +38,7 @@ const actions = {
     page = 'HOTSHEETS_01'
     window.gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: spreadsheetId,
-      range: page + '!A2:C'
+      range: page + '!A2:C' // TODO - parameterize the range selection here
     }).then((resp) => {
       console.log(resp)
     })
