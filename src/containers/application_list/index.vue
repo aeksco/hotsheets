@@ -23,9 +23,6 @@ export default {
       return store.getters['application/collection']
     }
   }
-  // mounted () {
-  //   return store.dispatch('application/fetchCollection')
-  // }
 }
 </script>
 

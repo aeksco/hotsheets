@@ -1,7 +1,7 @@
 
 <template>
   <div class="container">
-    <a :href="'#/applications/' + id">Back</a>
+    <a :href="'#/applications/' + model._id">Back</a>
     <h2>Application Edit - {{model.name}}</h2>
     <hr>
 

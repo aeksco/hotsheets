@@ -19,12 +19,7 @@ export default {
   },
   props: ['id'],
   created () {
-    this.fetch()
-  },
-  methods: {
-    fetch () {
-      return store.dispatch('application/fetchModel', this.id)
-    }
+    return store.commit('application/current', { app_id: this.id })
   },
   computed: {
     model () {

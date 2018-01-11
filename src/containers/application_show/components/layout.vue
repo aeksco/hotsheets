@@ -1,4 +1,4 @@
-g
+
 <template>
   <div class="container">
     <a href="#/applications">Back</a>
@@ -30,7 +30,7 @@ export default {
   props: ['model'],
   methods: {
     onConfirm () {
-      return store.dispatch('application/destroy', this.model._id)
+      return store.commit('application/destroy', { app: this.model })
     }
   }
 }

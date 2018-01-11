@@ -22,7 +22,11 @@
     <tbody>
       <tr v-for="m in collection" :key="m._id">
 
-        <td>{{m.name}}</td>
+        <td>
+          <a :href=" '#/applications/' + m._id ">
+            {{m.name}}
+          </a>
+        </td>
 
         <td>{{m.google_sheets_id}}</td>
 

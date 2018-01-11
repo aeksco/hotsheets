@@ -54,7 +54,6 @@ export default {
   },
   methods: {
     formSubmit () {
-      // return store.dispatch('application/create', this.model)
       return store.commit('application/persist', { app: this.model })
     }
   }
