@@ -26,6 +26,7 @@ const mutations = {
 
   googleUser (state, user) {
     state.googleUser = user
+    store.dispatch('google_sheet/loadSheetAPI')
     router.push('/')
   }
 }

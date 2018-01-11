@@ -5,9 +5,9 @@ import Factory from './factory'
 // actions
 // functions that causes side effects and can involve asynchronous operations.
 const actions = {
-  fetchSheet: ({ commit }) => {
+  fetchSheet: ({ commit }, { spreadsheetId }) => {
     window.gapi.client.sheets.spreadsheets.get({
-      spreadsheetId: '17SHgu0kODoZS-zQY3YvtKIU5gYo4xtCJYUY7g3QAdyE' // TODO - constantize `spreadsheetId`
+      spreadsheetId: spreadsheetId // '17SHgu0kODoZS-zQY3YvtKIU5gYo4xtCJYUY7g3QAdyE'
     }).then((response) => {
       console.log('FETCHED SHEET')
       console.log(response)
@@ -32,6 +32,16 @@ const actions = {
         commit('api_loaded', true)
         // console.error('Unable to load sheet api')
       })
+  },
+
+  fetchSheetValues: ({ commit }, { spreadsheetId, page }) => {
+    page = 'HOTSHEETS_01'
+    window.gapi.client.sheets.spreadsheets.values.get({
+      spreadsheetId: spreadsheetId,
+      range: page + '!A2:C'
+    }).then((resp) => {
+      console.log(resp)
+    })
   }
 }
 
