@@ -26,15 +26,19 @@
 	    </ul>
 
 	    <ul class="navbar-nav ml-auto">
+        <!-- <b-nav-item-dropdown text="Admin" right> -->
+          <!-- <b-dropdown-item href="#/schemas">Schema Admin</b-dropdown-item> -->
+        <!-- </b-nav-item-dropdown> -->
+
+        <!-- <b-nav-item-dropdown text="User" right> -->
+          <!-- <b-dropdown-item href="#/auth/register">Register</b-dropdown-item> -->
+          <!-- <b-dropdown-item href="#/auth/login">Login</b-dropdown-item> -->
+        <!-- </b-nav-item-dropdown> -->
+
         <li class="nav-item">
           <a class="nav-link" href="#/schemas">Admin</a>
         </li>
-<!-- 	      <li class="nav-item">
-	        <a class="nav-link" href="#/auth/register">Register</a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="#/auth/login">Login</a>
-	      </li> -->
+
 	    </ul>
 	  </div>
 	</nav>
