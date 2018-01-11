@@ -108,10 +108,13 @@
           <select class="form-control" placeholder="Datatype" v-model="selectedAttr.datatype" >
             <optgroup label="Basics">
               <option value='TEXT'>Text</option>
-              <option value='DATE'>Date</option>
-              <option value='BOOL'>Checkbox</option>
               <option value='NUMBER'>Number</option>
+              <option value='BOOL'>Checkbox</option>
+              <option value='DATE'>Date</option>
+              <option value='TIME'>Time</option>
             </optgroup>
+            <!-- <optgroup label="Masked"> -->
+            <!-- </optgroup> -->
             <optgroup label="Relations">
               <option value='SCHEMA'>Belongs To</option>
               <option value='HAS_MANY'>Has Many</option>

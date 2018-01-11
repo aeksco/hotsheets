@@ -39,6 +39,12 @@
           {{item.label}}
         </span>
 
+        <!-- TIME -->
+        <span class="badge" v-if="item.datatype === 'TIME'">
+          <i class="fa fa-clock-o mr-2"></i>
+          {{item.label}}
+        </span>
+
         <!-- BOOL -->
         <span class="badge" v-if="item.datatype === 'BOOL'">
           <i class="fa fa-check-square-o mr-2"></i>

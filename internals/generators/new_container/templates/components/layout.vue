@@ -22,6 +22,8 @@
         <input type="number" class="form-control" placeholder="<%= attr.label %>" v-model="model.<%=attr.identifier%>">
       <% } else if (attr.datatype === 'DATE') { %>
         <input type="date" class="form-control" placeholder="<%= attr.label %>" v-model="model.<%=attr.identifier%>">
+      <% } else if (attr.datatype === 'TIME') { %>
+        <input type="time" class="form-control" placeholder="<%= attr.label %>" v-model="model.<%=attr.identifier%>">
       <% } %>
       </div>
     <% } %>
