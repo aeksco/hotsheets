@@ -93,11 +93,11 @@
         </div>
         <!-- end 'validations' -->
 
-        <div class="form-group">
-          <label>Preferred Display Attribute</label>
-          <small class="form-text text-muted">This attribute will be the user-facing label when entities belonging to this schema are referenced in a relation.</small>
-          <input type="checkbox" class="form-control" v-model="selectedAttr.preferred" >
-        </div>
+        <!-- <div class="form-group"> -->
+          <!-- <label>Preferred Display Attribute</label> -->
+          <!-- <small class="form-text text-muted">This attribute will be the user-facing label when entities belonging to this schema are referenced in a relation.</small> -->
+          <!-- <input type="checkbox" class="form-control" v-model="selectedAttr.preferred" > -->
+        <!-- </div> -->
 
         <hr>
         <p class="lead mb-0">DataType</p>

@@ -8,7 +8,8 @@ const state = {
       attributes: {
         name: 'Al Schwaa',
         location: 'Troy, NY',
-        phone: '1234567890'
+        phone: '1234567890',
+        email: 'foo@bar.com'
       }
     },
     {
@@ -17,7 +18,8 @@ const state = {
       attributes: {
         name: 'John Doe',
         location: 'NY, NY',
-        phone: '0987654321'
+        phone: '0987654321',
+        email: 'bar@foo.com'
       }
     },
     {
@@ -71,6 +73,24 @@ const state = {
         contact_id: 'rec_83122409943633',
         invoice_id: 'rec_56277813766977',
         status: 'In-Progress'
+      }
+    },
+    {
+      _id: 'rec_27255131279180',
+      schema_id: 'schema_10301016043421',
+      attributes: {
+        contact_id: 'rec_32976293799615',
+        type: 'Mobile',
+        value: '512-845-7896'
+      }
+    },
+    {
+      _id: 'rec_56843163584340',
+      schema_id: 'schema_10301016043421',
+      attributes: {
+        contact_id: 'rec_32976293799615',
+        type: 'Email',
+        value: 'schwaa@foo.biz'
       }
     }
   ]

@@ -66,7 +66,6 @@ const mutations = {
       help: '',
       required: false,
       unique: false,
-      preferred: false,
       col_span: 6,
       datatype: 'TEXT',
       datatypeOptions: {}
