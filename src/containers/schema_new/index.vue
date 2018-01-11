@@ -7,7 +7,7 @@
 
 <script>
 // import _ from 'lodash'
-// import store from '@/store'
+import store from '@/store'
 import LayoutView from './components/layout.vue'
 
 export default {
@@ -18,12 +18,7 @@ export default {
     title: 'Schemas - New' // title is now "HotSheets - Schemas - New"
   },
   data () {
-    let schema = {
-      label: '',
-      identifier: '',
-      _id: null,
-      attributes: []
-    }
+    let schema = store.getters['schema/new']
     return { schema }
   }
 }

@@ -2,7 +2,7 @@
 <template>
 <div class="row">
 
-  <div v-for="attr in schema.attributes" :key="attr._id" :class="getColspanCss(attr)">
+  <div v-for="attr in schema.attributes" :key="attr._id" :class="getColspanCss(attr)" v-if="attr.datatype !== 'HAS_MANY'">
     <div class="form-group">
       <label>
         {{ attr.label }}

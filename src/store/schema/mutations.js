@@ -23,6 +23,7 @@ const mutations = {
       state.collection.push(schema)
     }
 
+    // TODO - redirect to schema show / table page
     return router.go(-1)
   },
   destroy (state, { schema }) {
@@ -43,9 +44,9 @@ const mutations = {
   removeAttribute (state, { schema, attr }) {
     schema.attributes = _.filter(schema.attributes, (s) => { return s._id !== attr._id })
   },
-  persistSelectedAttribute (state, { attr }) {
+  persistSelectedAttribute (state, { schema, attr }) {
     if (attr._id) {
-      state.selectedSchema.attributes = _.map(state.selectedSchema.attributes, (a) => { // QUESTION - just .map()
+      schema.attributes = _.map(schema.attributes, (a) => { // QUESTION - just .map()
         if (a._id === attr._id) {
           return attr
         } else {
@@ -54,7 +55,7 @@ const mutations = {
       })
     } else {
       attr._id = 'attr_' + Math.floor((Math.random() * 100000000000000) + 1)
-      state.selectedSchema.attributes.push(attr)
+      schema.attributes.push(_.cloneDeep(attr))
     }
     state.selectedAttribute = null
   },

@@ -6,16 +6,6 @@ const state = {
       label: 'Contact',
       identifier: 'contact',
       _id: 'schema_29321443037762',
-      relations: [
-        {
-          type: 'HAS_MANY',
-          schema_id: 'schema_22881179555990'
-        },
-        {
-          type: 'HAS_MANY',
-          schema_id: 'schema_85414304137721'
-        }
-      ],
       attributes: [
         {
           order: 0,
@@ -57,16 +47,6 @@ const state = {
       label: 'Invoice',
       identifier: 'invoice',
       _id: 'schema_22881179555990',
-      relations: [
-        {
-          type: 'BELONGS_TO',
-          schema_id: 'schema_29321443037762'
-        },
-        {
-          type: 'HAS_MANY',
-          schema_id: 'schema_85414304137721'
-        }
-      ],
       attributes: [
         {
           order: 0,
@@ -130,16 +110,6 @@ const state = {
       label: 'Job',
       identifier: 'job',
       _id: 'schema_85414304137721',
-      relations: [
-        {
-          type: 'BELONGS_TO',
-          schema_id: 'schema_29321443037762'
-        },
-        {
-          type: 'BELONGS_TO',
-          schema_id: 'schema_22881179555990'
-        }
-      ],
       attributes: [
         {
           order: 1,

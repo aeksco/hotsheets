@@ -4,7 +4,7 @@
 
   <table class="table table-striped table-hover">
     <thead>
-      <th v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype !=='HAS_MANY'">
+      <th v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype !=='HAS_MANY' && attr.identifier !== ignoreAttribute">
         {{attr.label}}
         <i class="fa fa-fw fa-question-circle-o" v-b-tooltip.hover.bottom :title="attr.help" ></i>
       </th>
@@ -15,7 +15,7 @@
       <tr v-for="record in records" :key="record._id">
 
         <!-- Record Data -->
-        <td v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype !== 'HAS_MANY'">
+        <td v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype !== 'HAS_MANY' && attr.identifier !== ignoreAttribute">
           <a v-if="attr.datatype === 'SCHEMA'" :href="getLinkedSchemaHref(attr, record.attributes[attr.identifier])">
             {{ getLinkedSchemaLabel(attr, record.attributes[attr.identifier]) }}
           </a>
@@ -89,7 +89,7 @@ import _ from 'lodash'
 import store from '@/store'
 
 export default {
-  props: ['schema', 'records'],
+  props: ['schema', 'records', 'ignoreAttribute'],
   methods: {
     onConfirmDestroy (record) {
       return store.commit('record/destroy', { record })

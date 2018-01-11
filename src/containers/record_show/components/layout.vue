@@ -22,9 +22,9 @@
             <div class="col-lg-12">
               <table class="table table-striped table-hover">
                 <tbody>
-                  <tr v-for="attr in schema.attributes" :key="attr._id">
+                  <tr v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype !== 'HAS_MANY'">
                     <td class='text-left'>
-                      <strong v-if="attr.datatype !=='HAS_MANY'">
+                      <strong>
                         {{attr.label}}
                       </strong>
                     </td>
@@ -36,7 +36,7 @@
                         <i class="fa fa-fw fa-check-square-o" v-if="record.attributes[attr.identifier]"></i>
                         <i class="fa fa-fw fa-square-o" v-if="!record.attributes[attr.identifier]"></i>
                       </span>
-                      <span v-if="attr.datatype !== 'HAS_MANY'">{{record.attributes[attr.identifier]}}</span>
+                      <span v-else>{{record.attributes[attr.identifier]}}</span>
                     </td>
                   </tr>
                 </tbody>
@@ -48,10 +48,9 @@
       </div>
     </div>
 
-    <div class="row mt-4" v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype === 'HAS_MANY'">
-
+    <div class="row mt-4">
       <!-- Relation Viewer -->
-      <div class="col-lg-12">
+      <div :class="'col-lg-' + attr.col_span" v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype === 'HAS_MANY'">
         <div class="card card-body bg-dark color-light border-light">
           <div class="row">
             <div class="col-lg-8">
@@ -65,7 +64,7 @@
             </div>
           </div>
 
-          <RecordTable :schema="relatedSchema(attr)" :records="getRelatedRecords(attr)"/>
+          <RecordTable :schema="relatedSchema(attr)" :records="getRelatedRecords(attr)" :ignoreAttribute="schema.identifier + '_id'"/>
         </div>
       </div>
 
@@ -111,7 +110,7 @@ export default {
     relatedSchemaName (attr) { // TODO - this should be moved into a getter
       let allSchemas = store.getters['schema/collection']
       let relatedSchema = _.find(allSchemas, { _id: attr.datatypeOptions.schema_id })
-      if (attr.type === 'HAS_MANY') {
+      if (attr.datatype === 'HAS_MANY') {
         return relatedSchema.label_plural
       } else {
         return relatedSchema.label
@@ -129,15 +128,6 @@ export default {
         })
         return relatedRecords
       }
-
-      // NOTE - not used now, could be helpful later
-      // if (relation.type === 'BELONGS_TO') {
-      //   let relatedRecords = _.filter(allRecords, (r) => {
-      //     // return r.schema_id === relatedSchema._id && r.attributes[_id] === this.record._id
-      //     return r.schema_id === relatedSchema._id && this.record.attributes[`${relatedSchema.identifier}_id`] === r._id
-      //   })
-      //   return relatedRecords
-      // }
     }
   }
 }

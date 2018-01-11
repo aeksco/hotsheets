@@ -129,13 +129,13 @@
           </select>
         </div>
 
-        <!-- <div class="form-group" v-if="selectedAttr.datatype === 'SCHEMA'"> -->
-          <!-- <label>Related Schema Key</label> -->
-          <!-- <small class="form-text text-muted">The name of the attribute on the related schema that is stored in this schema as a means of linking the two.</small> -->
-          <!-- <select class="form-control" v-model="selectedAttr.datatypeOptions.schema_attribute_identifier" > -->
-            <!-- <option v-for="a in schemaAttributes(selectedAttr.datatypeOptions.schema_id)" :key="a._id" :value="a.identifier">{{a.label}}</option> -->
-          <!-- </select> -->
-        <!-- </div> -->
+        <div class="form-group" v-if="selectedAttr.datatype === 'SCHEMA'">
+          <label>Related Schema Key</label>
+          <small class="form-text text-muted">The name of the attribute on the related schema that is stored in this schema as a means of linking the two.</small>
+          <select class="form-control" v-model="selectedAttr.datatypeOptions.schema_attribute_identifier" >
+            <option v-for="a in schemaAttributes(selectedAttr.datatypeOptions.schema_id)" :key="a._id" :value="a.identifier">{{a.label}}</option>
+          </select>
+        </div>
 
         <div class="form-group" v-if="selectedAttr.datatype === 'NUMBER'">
           <label>Default Value</label>
@@ -237,7 +237,7 @@ export default {
       store.commit('schema/clearSelectedAttribute')
     },
     updateSelected (attr) {
-      store.commit('schema/persistSelectedAttribute', { attr: attr })
+      store.commit('schema/persistSelectedAttribute', { schema: this.schema, attr: attr })
     },
     schemaAttributes (schema_id) {
       if (!schema_id) return [{ label: 'Please Select A Schema' }]
