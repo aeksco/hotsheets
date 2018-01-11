@@ -10,6 +10,9 @@
       </div>
 
       <div class="col-lg-4 text-right">
+        <a class='btn btn-outline-warning' :href=" '#/schemas/' + schema._id + '/edit' ">
+          <i class="fa fa-fw fa-pencil"></i>
+        </a>
         <a class='btn btn-outline-success' :href=" '#/schemas/' + schema._id + '/records/new' ">
           <i class="fa fa-fw fa-plus mr-2"></i>
           New {{ schema.label }}

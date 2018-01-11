@@ -115,15 +115,18 @@
             </optgroup>
             <optgroup label="Masked">
               <option value='PHONE_NUMBER'>Phone Number</option>
+              <!-- <option value='CURRENCY_USD'>Currency (USD)</option> -->
             </optgroup>
+            <!-- <optgroup label="Selects"> -->
+              <!-- <option value='TEXT_SELECT'>Text Select</option> -->
+              <!-- <option value='NUMBER_SELECT'>Number Select</option> -->
+            <!-- </optgroup> -->
             <optgroup label="Relations">
               <option value='BELONGS_TO'>Belongs To</option>
               <option value='HAS_MANY'>Has Many</option>
+              <!-- <option value='HAS_ONE'>Has One</option> -->
+              <!-- <option value='NESTED_SCHEMA'>Nested Schema</option> -->
             </optgroup>
-            <!-- <option value='TEXT_SELECT'>Text Select</option> -->
-            <!-- <option value='NUMBER_SELECT'>Number Select</option> -->
-            <!-- <option value='CURRENCY'>Currency</option> -->
-            <!-- <option value='NESTED_SCHEMA'>Nested Schema</option> -->
           </select>
         </div>
 
