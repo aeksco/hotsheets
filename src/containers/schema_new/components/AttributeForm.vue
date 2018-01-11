@@ -117,7 +117,7 @@
               <option value='PHONE_NUMBER'>Phone Number</option>
             </optgroup>
             <optgroup label="Relations">
-              <option value='SCHEMA'>Belongs To</option>
+              <option value='BELONGS_TO'>Belongs To</option>
               <option value='HAS_MANY'>Has Many</option>
             </optgroup>
             <!-- <option value='TEXT_SELECT'>Text Select</option> -->
@@ -128,16 +128,16 @@
         </div>
 
         <!-- SCHEMA Options -->
-        <div class="form-group" v-if="selectedAttr.datatype === 'SCHEMA' || selectedAttr.datatype === 'HAS_MANY'">
+        <div class="form-group" v-if="selectedAttr.datatype === 'BELONGS_TO' || selectedAttr.datatype === 'HAS_MANY'">
           <label>Related Schema</label>
           <small class="form-text text-muted">The Schema with which this attribute maintains a relation.</small>
           <select class="form-control" v-model="selectedAttr.datatypeOptions.schema_id" >
-            <option v-if="selectedAttr.datatype === 'SCHEMA'" v-for="s in allSchemas" :key="s._id" :value="s._id">{{s.label}}</option>
+            <option v-if="selectedAttr.datatype === 'BELONGS_TO'" v-for="s in allSchemas" :key="s._id" :value="s._id">{{s.label}}</option>
             <option v-if="selectedAttr.datatype === 'HAS_MANY'" v-for="s in allSchemas" :key="s._id" :value="s._id">{{s.label_plural}}</option>
           </select>
         </div>
 
-        <div class="form-group" v-if="selectedAttr.datatype === 'SCHEMA'">
+        <div class="form-group" v-if="selectedAttr.datatype === 'BELONGS_TO'">
           <label>Related Schema Key</label>
           <small class="form-text text-muted">The name of the attribute on the related schema that is stored in this schema as a means of linking the two.</small>
           <select class="form-control" v-model="selectedAttr.datatypeOptions.schema_attribute_identifier" >

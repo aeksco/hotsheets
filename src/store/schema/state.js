@@ -136,7 +136,7 @@ const state = {
           label: 'Contact',
           help: 'Contact to whom the invoice has been sent.',
           required: true,
-          datatype: 'SCHEMA',
+          datatype: 'BELONGS_TO',
           datatypeOptions: {
             schema_id: 'schema_29321443037762',
             schema_attribute_identifier: 'name'
@@ -209,7 +209,7 @@ const state = {
           label: 'Contact',
           help: 'Contact for whom the Job is being done',
           required: true,
-          datatype: 'SCHEMA',
+          datatype: 'BELONGS_TO',
           datatypeOptions: {
             schema_id: 'schema_29321443037762',
             schema_attribute_identifier: 'name'
@@ -223,7 +223,7 @@ const state = {
           label: 'Invoice',
           help: 'Invoice for this Job',
           required: false,
-          datatype: 'SCHEMA',
+          datatype: 'BELONGS_TO',
           datatypeOptions: {
             schema_id: 'schema_22881179555990',
             schema_attribute_identifier: 'invoice_id'
@@ -291,7 +291,7 @@ const state = {
           unique: false,
           preferred: false,
           col_span: 4,
-          datatype: 'SCHEMA',
+          datatype: 'BELONGS_TO',
           datatypeOptions: {
             schema_id: 'schema_29321443037762',
             schema_attribute_identifier: 'name'

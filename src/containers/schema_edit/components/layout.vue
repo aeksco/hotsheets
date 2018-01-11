@@ -52,12 +52,12 @@
                   <option value='DATE'>Date</option>
                   <option value='BOOL'>Checkbox</option>
                   <option value='NUMBER'>Number</option>
-                  <option value='SCHEMA'>Schema</option>
+                  <option value='BELONGS_TO'>Schema</option>
                 </select>
                 <small class="form-text text-muted">The type of data represented by this attribute.</small>
               </div>
 
-              <div class="form-group" v-if="selectedAttr.datatype === 'SCHEMA'">
+              <div class="form-group" v-if="selectedAttr.datatype === 'BELONGS_TO'">
                 <label>Related Schema</label>
                 <select class="form-control" v-model="selectedAttr.datatypeOptions.schema_id" >
                   <option v-for="s in allSchemas" :key="s._id" :value="s._id">{{s.label}}</option>
@@ -65,7 +65,7 @@
                 <small class="form-text text-muted">The Schema to which this attribute represents a relation.</small>
               </div>
 
-              <div class="form-group" v-if="selectedAttr.datatype === 'SCHEMA'">
+              <div class="form-group" v-if="selectedAttr.datatype === 'BELONGS_TO'">
                 <label>Related Schema Key</label>
                 <select class="form-control" v-model="selectedAttr.datatypeOptions.schema_attribute_identifier" >
                   <option v-for="a in schemaAttributes(selectedAttr.datatypeOptions.schema_id)" :key="a._id" :value="a.identifier">{{a.label}}</option>

@@ -29,7 +29,7 @@
                       </strong>
                     </td>
                     <td>
-                      <a v-if="attr.datatype === 'SCHEMA'" :href="getLinkedSchemaHref(attr, record.attributes[attr.identifier])">
+                      <a v-if="attr.datatype === 'BELONGS_TO'" :href="getLinkedSchemaHref(attr, record.attributes[attr.identifier])">
                         {{ getLinkedSchemaLabel(attr, record.attributes[attr.identifier]) }}
                       </a>
                       <span v-else-if="attr.datatype === 'BOOL'">

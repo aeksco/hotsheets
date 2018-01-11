@@ -16,7 +16,7 @@
       <input type="number" class="form-control" :placeholder="attr.label" v-model="record.attributes[attr.identifier]" v-if="attr.datatype === 'NUMBER'">
       <masked-input class="form-control" :placeholder="attr.label" v-model="record.attributes[attr.identifier]" mask="\+\1 (111) 111-1111" v-if="attr.datatype === 'PHONE_NUMBER'"/>
 
-      <select class="form-control" v-model="record.attributes[attr.identifier]" v-if="attr.datatype === 'SCHEMA'">
+      <select class="form-control" v-model="record.attributes[attr.identifier]" v-if="attr.datatype === 'BELONGS_TO'">
         <option v-for="rec in schemaDropdown(attr.datatypeOptions.schema_id)" :key="rec._id" :value="rec._id">{{ rec.attributes[attr.datatypeOptions.schema_attribute_identifier] }}</option>
       </select>
     </div>

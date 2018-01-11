@@ -16,7 +16,7 @@
 
         <!-- Record Data -->
         <td v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype !== 'HAS_MANY' && attr.identifier !== ignoreAttribute">
-          <a v-if="attr.datatype === 'SCHEMA'" :href="getLinkedSchemaHref(attr, record.attributes[attr.identifier])">
+          <a v-if="attr.datatype === 'BELONGS_TO'" :href="getLinkedSchemaHref(attr, record.attributes[attr.identifier])">
             {{ getLinkedSchemaLabel(attr, record.attributes[attr.identifier]) }}
           </a>
           <a v-else-if="attr.unique" :href=" '#/schemas/' + schema._id + '/records/' + record._id">

@@ -73,11 +73,11 @@
                   <option value='DATE'>Date</option>
                   <option value='BOOL'>Checkbox</option>
                   <option value='NUMBER'>Number</option>
-                  <option value='SCHEMA'>Schema</option>
+                  <option value='BELONGS_TO'>Schema</option>
                 </select>
               </div>
 
-              <div class="form-group" v-if="selectedAttr.datatype === 'SCHEMA'">
+              <div class="form-group" v-if="selectedAttr.datatype === 'BELONGS_TO'">
                 <label>Related Schema</label>
                 <small class="form-text text-muted">The Schema to which this attribute represents a relation.</small>
                 <select class="form-control" v-model="selectedAttr.datatypeOptions.schema_id" >
@@ -85,7 +85,7 @@
                 </select>
               </div>
 
-              <div class="form-group" v-if="selectedAttr.datatype === 'SCHEMA'">
+              <div class="form-group" v-if="selectedAttr.datatype === 'BELONGS_TO'">
                 <label>Related Schema Key</label>
                 <small class="form-text text-muted">The name of the attribute on the related schema that is stored in this schema as a means of linking the two.</small>
                 <select class="form-control" v-model="selectedAttr.datatypeOptions.schema_attribute_identifier" >

@@ -22,7 +22,7 @@
         </span>
 
         <!-- SCHEMA -->
-        <span class="badge" v-if="item.datatype === 'SCHEMA'">
+        <span class="badge" v-if="item.datatype === 'BELONGS_TO'">
           <i class="fa fa-link mr-2"></i>
           {{item.label}}
         </span>
