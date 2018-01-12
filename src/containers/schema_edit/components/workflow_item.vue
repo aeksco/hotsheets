@@ -21,8 +21,14 @@
           {{item.label}}
         </span>
 
-        <!-- SCHEMA -->
+        <!-- BELONGS_TO -->
         <span class="badge" v-if="item.datatype === 'BELONGS_TO'">
+          <i class="fa fa-link mr-2"></i>
+          {{item.label}}
+        </span>
+
+        <!-- HAS_ONE -->
+        <span class="badge" v-if="item.datatype === 'HAS_ONE'">
           <i class="fa fa-link mr-2"></i>
           {{item.label}}
         </span>

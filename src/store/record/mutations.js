@@ -9,7 +9,7 @@ const mutations = {
   sync (state, collection) {
     state.collection = _.sortBy(collection, (s) => { return s.order })
   },
-  persist (state, { schema, record }) {
+  persist (state, { schema, record, redirect }) {
     if (record._id) {
       state.collection = _.map(state.collection, (s) => {
         if (s._id === record._id) {
@@ -23,7 +23,8 @@ const mutations = {
       state.collection.push(record)
     }
 
-    return router.go(-1)
+    // Redirects 'back' if necessary
+    if (redirect) { router.go(-1) }
   },
   destroy (state, { record }) {
     state.collection = _.filter(state.collection, (s) => { return s._id !== record._id })

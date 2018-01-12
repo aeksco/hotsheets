@@ -15,7 +15,7 @@
       <input type="checkbox" class="form-control" v-model="record.attributes[attr.identifier]" v-if="attr.datatype === 'BOOL'">
       <input type="number" class="form-control" :placeholder="attr.label" v-model="record.attributes[attr.identifier]" v-if="attr.datatype === 'NUMBER'">
       <masked-input type="tel" class="form-control" :placeholder="attr.label" v-model="record.attributes[attr.identifier]" mask="\+\1 (111) 111-1111" v-if="attr.datatype === 'PHONE_NUMBER'"/>
-      <select class="form-control" v-model="record.attributes[attr.identifier]" v-if="attr.datatype === 'BELONGS_TO'">
+      <select class="form-control" v-model="record.attributes[attr.identifier]" v-if="attr.datatype === 'BELONGS_TO' || attr.datatype === 'HAS_ONE'">
         <option v-for="rec in schemaDropdown(attr.datatypeOptions.schema_id)" :key="rec._id" :value="rec._id">{{ rec.attributes[attr.datatypeOptions.schema_attribute_identifier] }}</option>
       </select>
     </div>
@@ -27,12 +27,12 @@
       Cancel
     </button>
 
-    <button class="btn btn-outline-success" @click="createRecord" v-if="record._id">
+    <button class="btn btn-outline-success" @click="persistRecord(schema, record, relatedAttr)" v-if="record._id">
       <i class="fa fa-fw fa-plus mr-1"></i>
       Update {{ schema.label }}
     </button>
 
-    <button class="btn btn-outline-success" @click="createRecord" v-if="!record._id">
+    <button class="btn btn-outline-success" @click="persistRecord(schema, record, relatedAttr)" v-if="!record._id">
       <i class="fa fa-fw fa-plus mr-1"></i>
       Create {{ schema.label }}
     </button>
@@ -46,21 +46,14 @@
 <script>
 import _ from 'lodash'
 import store from '@/store'
-import router from '@/routers'
 import MaskedInput from 'vue-masked-input'
 
 export default {
-  props: ['schema', 'record'],
+  props: ['schema', 'record', 'relatedAttr', 'persistRecord', 'cancelForm'],
   components: {
     MaskedInput
   },
   methods: {
-    cancelForm () {
-      router.go(-1)
-    },
-    createRecord () {
-      store.commit('record/persist', { schema: this.schema, record: this.record })
-    },
     getColspanCss (attr) {
       if (!attr.col_span) {
         return 'col-lg-12'

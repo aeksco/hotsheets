@@ -4,21 +4,24 @@
 
   <table class="table table-striped table-hover">
     <thead>
-      <th v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype !=='HAS_MANY' && attr.identifier !== ignoreAttribute">
+      <th v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype !=='HAS_MANY' && attr.datatype !=='HAS_ONE' && attr.identifier !== ignoreAttribute">
         {{attr.label}}
         <i class="fa fa-fw fa-question-circle-o" v-b-tooltip.hover.bottom :title="attr.help" ></i>
       </th>
-      <th></th>
+      <th v-if="!disableControls"></th>
     </thead>
     <tbody>
 
       <tr v-for="record in records" :key="record._id">
 
         <!-- Record Data -->
-        <td v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype !== 'HAS_MANY' && attr.identifier !== ignoreAttribute">
+        <td v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype !== 'HAS_MANY' && attr.datatype !=='HAS_ONE' && attr.identifier !== ignoreAttribute">
           <a v-if="attr.datatype === 'BELONGS_TO'" :href="getLinkedSchemaHref(attr, record.attributes[attr.identifier])">
             {{ getLinkedSchemaLabel(attr, record.attributes[attr.identifier]) }}
           </a>
+          <!-- <a v-if="attr.datatype === 'HAS_ONE'" :href="getLinkedSchemaHref(attr, record.attributes[attr.identifier])"> -->
+            <!-- {{ getLinkedSchemaLabel(attr, record.attributes[attr.identifier]) }} -->
+          <!-- </a> -->
           <a v-else-if="attr.unique" :href=" '#/schemas/' + schema._id + '/records/' + record._id">
             {{ record.attributes[attr.identifier] }}
           </a>
@@ -32,7 +35,7 @@
         </td>
 
         <!-- Record Controls -->
-        <td class='text-right controls'>
+        <td class='text-right controls' v-if="!disableControls">
 
           <!-- Edit Record -->
           <a class="btn btn-sm btn-outline-warning" :href=" '#/schemas/' + schema._id + '/records/' + record._id + '/edit' ">
@@ -89,7 +92,7 @@ import _ from 'lodash'
 import store from '@/store'
 
 export default {
-  props: ['schema', 'records', 'ignoreAttribute'],
+  props: ['schema', 'records', 'ignoreAttribute', 'disableControls'],
   methods: {
     onConfirmDestroy (record) {
       return store.commit('record/destroy', { record })
@@ -140,6 +143,7 @@ export default {
     tr
       td.controls
         opacity: 0
+        transition: opacity 0.3s ease-in-out
 
       &:hover
         td.controls

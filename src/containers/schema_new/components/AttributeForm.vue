@@ -78,7 +78,7 @@
                 Required
                 <span class='text-danger'>*</span>
               </label>
-              <small class="form-text text-muted">Whether or not to enforce unique values for this attribute.</small>
+              <small class="form-text text-muted">Whether or not this attribute is required.</small>
               <input type="checkbox" class="form-control" v-model="selectedAttr.required" >
             </div>
           </div>
@@ -86,7 +86,7 @@
           <div class="col-lg-6 col-sm-12">
             <div class="form-group">
               <label>Unique</label>
-              <small class="form-text text-muted">Whether or not this attribute is required.</small>
+              <small class="form-text text-muted">Whether or not to enforce unique values for this attribute.</small>
               <input type="checkbox" class="form-control" v-model="selectedAttr.unique" >
             </div>
           </div>
@@ -122,25 +122,34 @@
               <!-- <option value='NUMBER_SELECT'>Number Select</option> -->
             <!-- </optgroup> -->
             <optgroup label="Relations">
+              <option value='HAS_ONE'>Has One</option>
               <option value='BELONGS_TO'>Belongs To</option>
               <option value='HAS_MANY'>Has Many</option>
-              <!-- <option value='HAS_ONE'>Has One</option> -->
-              <!-- <option value='NESTED_SCHEMA'>Nested Schema</option> -->
+              <!-- <option value='HAS_AND_BELONGS_TO_MANY'>Has And Belongs To Many</option> -->
             </optgroup>
           </select>
         </div>
 
         <!-- SCHEMA Options -->
-        <div class="form-group" v-if="selectedAttr.datatype === 'BELONGS_TO' || selectedAttr.datatype === 'HAS_MANY'">
+        <div class="form-group" v-if="selectedAttr.datatype === 'BELONGS_TO' || selectedAttr.datatype === 'HAS_ONE' || selectedAttr.datatype === 'HAS_MANY'">
           <label>Related Schema</label>
           <small class="form-text text-muted">The Schema with which this attribute maintains a relation.</small>
           <select class="form-control" v-model="selectedAttr.datatypeOptions.schema_id" >
             <option v-if="selectedAttr.datatype === 'BELONGS_TO'" v-for="s in allSchemas" :key="s._id" :value="s._id">{{s.label}}</option>
+            <option v-if="selectedAttr.datatype === 'HAS_ONE'" v-for="s in allSchemas" :key="s._id" :value="s._id">{{s.label}}</option>
             <option v-if="selectedAttr.datatype === 'HAS_MANY'" v-for="s in allSchemas" :key="s._id" :value="s._id">{{s.label_plural}}</option>
           </select>
         </div>
 
         <div class="form-group" v-if="selectedAttr.datatype === 'BELONGS_TO'">
+          <label>Related Schema Key</label>
+          <small class="form-text text-muted">The name of the attribute on the related schema that is stored in this schema as a means of linking the two.</small>
+          <select class="form-control" v-model="selectedAttr.datatypeOptions.schema_attribute_identifier" >
+            <option v-for="a in schemaAttributes(selectedAttr.datatypeOptions.schema_id)" :key="a._id" :value="a.identifier">{{a.label}}</option>
+          </select>
+        </div>
+
+        <div class="form-group" v-if="selectedAttr.datatype === 'HAS_ONE'">
           <label>Related Schema Key</label>
           <small class="form-text text-muted">The name of the attribute on the related schema that is stored in this schema as a means of linking the two.</small>
           <select class="form-control" v-model="selectedAttr.datatypeOptions.schema_attribute_identifier" >

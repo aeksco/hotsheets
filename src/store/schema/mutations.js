@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import router from '@/routers'
 // import { TEXT_WORKFLOW_STEP, MACRO_WORKFLOW_STEP, DELAY_WORKFLOW_STEP, KEY_WORKFLOW_STEP, KEY_DN_POSITION, KEY_UP_POSITION, KEY_PR_POSITION } from './constants'
 
 // // // //
@@ -22,9 +21,7 @@ const mutations = {
       schema._id = 'schema_' + Math.floor((Math.random() * 100000000000000) + 1)
       state.collection.push(schema)
     }
-
-    // TODO - redirect to schema show / table page
-    return router.go(-1)
+    state.selectedSchema = null
   },
   destroy (state, { schema }) {
     state.collection = _.filter(state.collection, (s) => { return s._id !== schema._id })
