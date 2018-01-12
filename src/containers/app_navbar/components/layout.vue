@@ -27,16 +27,16 @@
 
 	    <ul class="navbar-nav ml-auto">
 
-        <li class="nav-item" v-if="!isAuthenticated">
-          <a class="nav-link" href="#/auth/login">Login</a>
-        </li>
+        <!-- <li class="nav-item" v-if="!isAuthenticated"> -->
+          <!-- <a class="nav-link" href="#/auth/login">Login</a> -->
+        <!-- </li> -->
 
-        <li class="nav-item" v-if="currentUser.displayName">
-          <a class="nav-link" href="#/applications">
-            <img class='profile' :src="currentUser.image.url">
-            {{currentUser.displayName}}
-          </a>
-        </li>
+        <!-- <li class="nav-item" v-if="currentUser.displayName"> -->
+          <!-- <a class="nav-link" href="#/applications"> -->
+            <!-- <img class='profile' :src="currentUser.image.url"> -->
+            <!-- {{currentUser.displayName}} -->
+          <!-- </a> -->
+        <!-- </li> -->
 
         <b-nav-item-dropdown text="Admin" right>
           <b-dropdown-item href="#/applications">Applications</b-dropdown-item>
@@ -63,13 +63,13 @@ export default {
   computed: {
     navSchemas () {
       return _.filter(store.getters['schema/collection'], (s) => { return s.display.navbar_link })
-    },
-    currentUser () {
-      return store.getters['auth/currentUser']
-    },
-    isAuthenticated () {
-      return store.getters['auth/isAuthenticated']
     }
+    // currentUser () {
+      // return store.getters['auth/currentUser']
+    // }
+    // isAuthenticated () {
+      // return store.getters['auth/isAuthenticated']
+    // }
   }
 }
 </script>

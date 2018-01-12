@@ -34,11 +34,11 @@ const actions = {
       })
   },
 
-  fetchSheetValues: ({ commit }, { spreadsheetId, page }) => {
-    page = 'HOTSHEETS_01'
+  fetchSheetValues: ({ commit }, { spreadsheetId, page, range }) => {
+    // page = 'HOTSHEETS_01'
     window.gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: spreadsheetId,
-      range: page + '!A2:C' // TODO - parameterize the range selection here
+      range: page + range // '!A2:C' // TODO - parameterize the range selection here
     }).then((resp) => {
       console.log(resp)
     })
