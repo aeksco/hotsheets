@@ -64,7 +64,8 @@
         <!-- Form Body -->
         <div class="row">
           <div class="col-lg-12">
-            <input class='form-control' type="text" v-model="editing.value" placeholder='Dropdown Value'>
+            <input class='form-control' type="text" v-model="editing.value" placeholder='Dropdown Value' v-if="type === 'TEXT_SELECT'">
+            <input class='form-control' type="number" v-model="editing.value" placeholder='Dropdown Value' v-if="type === 'NUMBER_SELECT'">
           </div>
         </div>
 
