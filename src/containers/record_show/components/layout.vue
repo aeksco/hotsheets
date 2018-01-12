@@ -49,9 +49,11 @@
     </div>
 
     <div class="row">
-      <!-- HAS_MANY Relation Viewer -->
-      <div :class="'mt-4 col-lg-' + attr.col_span" v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype === 'HAS_MANY'">
-        <div class="card card-body bg-dark color-light border-light">
+      <!-- Relation Viewer -->
+      <div :class="'mt-4 col-lg-' + attr.col_span" v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype === 'HAS_MANY' || attr.datatype === 'HAS_ONE'">
+
+        <!-- HAS_MANY Relation  -->
+        <div class="card card-body bg-dark color-light border-light" v-if="attr.datatype === 'HAS_MANY'">
           <div class="row">
             <div class="col-lg-8">
               <p class="lead mb">{{ relatedSchemaName(attr) }}</p>
@@ -66,11 +68,9 @@
 
           <RecordTable :schema="relatedSchema(attr)" :records="getRelatedRecords(attr)" :ignoreAttribute="schema.identifier + '_id'"/>
         </div>
-      </div>
 
-      <!-- HAS_ONE Relation Viewer -->
-      <div :class="'mt-4 col-lg-' + attr.col_span" v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype === 'HAS_ONE'">
-        <div class="card card-body bg-dark color-light border-light">
+        <!-- HAS_ONE Relation -->
+        <div class="card card-body bg-dark color-light border-light" v-if="attr.datatype === 'HAS_ONE'">
           <div class="row">
             <div class="col-lg-8">
               <p class="lead mb">{{ relatedSchemaName(attr) }}</p>
@@ -85,8 +85,9 @@
 
           <!-- Displays HAS_ONE record -->
           <RecordTable :schema="relatedSchema(attr)" :records="[getRelatedRecords(attr)]" :disableControls="true" v-if="getRelatedRecords(attr) && editingHasOne !== attr.identifier"/>
-          <RecordForm :schema="relatedSchema(attr)" :relatedAttr="attr" :record="getRelatedRecords(attr)" :persistRecord="persistRecord" :cancelForm="cancelForm" v-if="getRelatedRecords(attr) && editingHasOne === attr.identifier"/>
 
+          <!-- Edit existing HAS_ONE record -->
+          <RecordForm :schema="relatedSchema(attr)" :relatedAttr="attr" :record="getRelatedRecords(attr)" :persistRecord="persistRecord" :cancelForm="cancelForm" v-if="getRelatedRecords(attr) && editingHasOne === attr.identifier"/>
 
           <!-- New HAS_ONE record -->
           <div class="row" v-if="!getRelatedRecords(attr)">
@@ -107,10 +108,9 @@
             </div>
 
           </div>
-
         </div>
-      </div>
 
+      </div>
     </div>
 
   </div>
