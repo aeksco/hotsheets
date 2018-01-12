@@ -76,10 +76,36 @@
               <p class="lead mb">{{ relatedSchemaName(attr) }}</p>
             </div>
             <div class="col-lg-4 text-right">
+
+              <button class="btn btn-outline-danger btn-sm" v-b-modal="'modal_' + attr._id" v-if="getRelatedRecords(attr) && editingHasOne !== attr.identifier">
+                <i class="fa fa-fw fa-trash mr-1"></i>
+                Destroy
+              </button>
+
               <button class="btn btn-outline-warning btn-sm" @click="editingHasOne = attr.identifier" v-if="getRelatedRecords(attr) && editingHasOne !== attr.identifier">
                 <i class="fa fa-fw fa-pencil mr-1"></i>
                 Edit
               </button>
+
+              <!-- Bootstrap Modal Component -->
+              <!-- TODO - move this outside the scope of the loop, and instead pass only the options into a single instance -->
+              <b-modal :id="'modal_' + attr._id"
+                :title="'Destroy ' + attr.label + '?'"
+                @ok="deleteRelated(attr)"
+                header-bg-variant="dark"
+                header-text-variant="light"
+                body-bg-variant="dark"
+                body-text-variant="light"
+                footer-bg-variant="danger"
+                footer-text-variant="light"
+                ok-variant='danger'
+                ok-title='DESTROY'
+                cancel-title='Cancel'
+                cancel-variant='dark'
+              >
+                <p class="text-left">Are you sure you want to destroy this {{ attr.label }}?</p>
+              </b-modal>
+
             </div>
           </div>
 
@@ -97,7 +123,7 @@
                 No {{ relatedSchemaName(attr) }} defined.
               </p>
 
-              <button class="btn btn-outline-success btn-sm" @click="editingHasOne = attr.identifier">
+              <button class="btn btn-outline-success" @click="editingHasOne = attr.identifier">
                 <i class="fa fa-fw fa-plus mr-1"></i>
                 Add {{ relatedSchemaName(attr) }}
               </button>
@@ -136,6 +162,15 @@ export default {
     }
   },
   methods: {
+    deleteRelated (attr) {
+      // Removes the association from the current record
+      this.record.attributes[attr.identifier] = null
+      store.commit('schema/persist', { schema: this.schema })
+
+      // Deletes the associated record
+      let relatedRecord = this.getRelatedRecords(attr)
+      store.commit('record/destroy', { record: relatedRecord })
+    },
     persistRecord (schema, record, relatedAttr) {
       if (record._id) {
         store.commit('record/persist', { schema: schema, record: record, redirect: false })
