@@ -8,7 +8,10 @@
 
           <div class="row">
             <div class="col-lg-8">
-              <h2>{{schema.label}} Detail</h2>
+              <h2>
+                <i :class="'fa fa-fw ' + schema.display.icon" v-if="schema.display.icon"></i>
+                {{schema.label}} Detail
+              </h2>
             </div>
             <div class="col-lg-4 text-right">
               <a class="btn btn-outline-warning btn-sm" :href="'#/schemas/' + schema._id + '/records/' + record._id + '/edit'">
@@ -56,7 +59,10 @@
         <div class="card card-body bg-dark color-light border-light" v-if="attr.datatype === 'HAS_MANY'">
           <div class="row">
             <div class="col-lg-8">
-              <p class="lead mb">{{ relatedSchemaName(attr) }}</p>
+              <p class="lead mb">
+                <i :class="'fa fa-fw ' + relatedSchema(attr).display.icon" v-if="relatedSchema(attr).display.icon"></i>
+                {{ relatedSchemaName(attr) }}
+              </p>
             </div>
             <div class="col-lg-4 text-right">
               <a class="btn btn-outline-success btn-sm" :href="'#/schemas/' + relatedSchema(attr)._id + '/records/new'">
@@ -73,7 +79,10 @@
         <div class="card card-body bg-dark color-light border-light" v-if="attr.datatype === 'HAS_ONE'">
           <div class="row">
             <div class="col-lg-8">
-              <p class="lead mb">{{ relatedSchemaName(attr) }}</p>
+              <p class="lead mb">
+                <i :class="'fa fa-fw ' + relatedSchema(attr).display.icon" v-if="relatedSchema(attr).display.icon"></i>
+                {{ relatedSchemaName(attr) }}
+              </p>
             </div>
             <div class="col-lg-4 text-right">
 
