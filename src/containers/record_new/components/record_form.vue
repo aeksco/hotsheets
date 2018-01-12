@@ -18,6 +18,9 @@
       <select class="form-control" v-model="record.attributes[attr.identifier]" v-if="attr.datatype === 'BELONGS_TO'">
         <option v-for="rec in schemaDropdown(attr.datatypeOptions.schema_id)" :key="rec._id" :value="rec._id">{{ rec.attributes[attr.datatypeOptions.schema_attribute_identifier] }}</option>
       </select>
+      <select class="form-control" v-model="record.attributes[attr.identifier]" v-if="attr.datatype === 'TEXT_SELECT' || attr.datatype === 'NUMBER_SELECT'">
+        <option v-for="opt in attr.datatypeOptions.dropdownOptions" :key="opt" :value="opt">{{ opt }}</option>
+      </select>
     </div>
   </div>
 

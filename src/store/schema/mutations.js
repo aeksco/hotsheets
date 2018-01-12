@@ -56,7 +56,7 @@ const mutations = {
       })
     } else {
       attr._id = 'attr_' + Math.floor((Math.random() * 100000000000000) + 1)
-      if (attr.datatype !== 'TEXT_SELECT' || attr.datatype !== 'NUMBER_SELECT') {
+      if (attr.datatype !== 'TEXT_SELECT' && attr.datatype !== 'NUMBER_SELECT') {
         delete attr.datatypeOptions.dropdownOptions
       }
       schema.attributes.push(_.cloneDeep(attr))

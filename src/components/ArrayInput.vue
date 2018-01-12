@@ -97,10 +97,15 @@ export default {
         return _.map(this.value, (v, i) => {
           return { id: i + 1, value: v }
         })
-      } else {
+      } else if (this.type === 'TEXT_SELECT') {
         return [
           { id: 1, value: 'Option 1' },
           { id: 2, value: 'Option 2' }
+        ]
+      } else {
+        return [
+          { id: 1, value: 1000 },
+          { id: 2, value: 2000 }
         ]
       }
     },
