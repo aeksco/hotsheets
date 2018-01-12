@@ -39,7 +39,7 @@
         <!-- </li> -->
 
         <b-nav-item-dropdown text="Admin" right>
-          <b-dropdown-item href="#/applications">Applications</b-dropdown-item>
+          <!-- <b-dropdown-item href="#/applications">Applications</b-dropdown-item> -->
           <b-dropdown-item href="#/schemas">Schemas</b-dropdown-item>
         </b-nav-item-dropdown>
 
