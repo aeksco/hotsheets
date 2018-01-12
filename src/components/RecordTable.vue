@@ -29,6 +29,9 @@
             <i class="fa fa-fw fa-check-square-o" v-if="record.attributes[attr.identifier]"></i>
             <i class="fa fa-fw fa-square-o" v-if="!record.attributes[attr.identifier]"></i>
           </span>
+          <span v-else-if="attr.datatype === 'COLOR'">
+            <i class="fa fa-fw fa-lg fa-square" :style="'color:' + record.attributes[attr.identifier]"></i>
+          </span>
           <span v-else>
             {{record.attributes[attr.identifier] || attr.datatypeOptions.default }}
           </span>

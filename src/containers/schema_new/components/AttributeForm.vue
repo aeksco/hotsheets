@@ -112,8 +112,8 @@
               <option value='BOOL'>Checkbox</option>
               <option value='DATE'>Date</option>
               <option value='TIME'>Time</option>
+              <option value='COLOR'>Color</option>
               <!-- <option value='RANGE'>Range</option> -->
-              <!-- <option value='COLOR'>Color</option> -->
               <!-- <option value='PASSWORD'>Password</option> -->
               <!-- <option value='URL'>URL</option> -->
             </optgroup>
