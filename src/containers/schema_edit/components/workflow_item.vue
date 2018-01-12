@@ -15,9 +15,21 @@
           {{item.label}}
         </span>
 
+        <!-- TEXT_SELECT -->
+        <span class="badge" v-if="item.datatype === 'TEXT_SELECT'">
+          <i class="fa fa-list mr-2"></i>
+          {{item.label}}
+        </span>
+
         <!-- NUMBER -->
         <span class="badge" v-if="item.datatype === 'NUMBER'">
           <i class="fa fa-hashtag mr-2"></i>
+          {{item.label}}
+        </span>
+
+        <!-- NUMBER_SELECT -->
+        <span class="badge" v-if="item.datatype === 'NUMBER_SELECT'">
+          <i class="fa fa-list-ol mr-2"></i>
           {{item.label}}
         </span>
 

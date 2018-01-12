@@ -112,15 +112,22 @@
               <option value='BOOL'>Checkbox</option>
               <option value='DATE'>Date</option>
               <option value='TIME'>Time</option>
+              <!-- <option value='RANGE'>Range</option> -->
+              <!-- <option value='COLOR'>Color</option> -->
+              <!-- <option value='PASSWORD'>Password</option> -->
+              <!-- <option value='URL'>URL</option> -->
             </optgroup>
             <optgroup label="Masked">
               <option value='PHONE_NUMBER'>Phone Number</option>
+              <!-- <option value='EMAIL'>Phone Number</option> -->
               <!-- <option value='CURRENCY_USD'>Currency (USD)</option> -->
             </optgroup>
-            <!-- <optgroup label="Selects"> -->
-              <!-- <option value='TEXT_SELECT'>Text Select</option> -->
-              <!-- <option value='NUMBER_SELECT'>Number Select</option> -->
-            <!-- </optgroup> -->
+            <optgroup label="Dropdowns">
+              <option value='TEXT_SELECT'>Text Dropdown</option>
+              <option value='NUMBER_SELECT'>Number Dropdown</option>
+              <!-- <option value='TEXT_SELECT_MULTI'>Text Multi Dropdown</option> -->
+              <!-- <option value='NUMBER_SELECT_MULTI'>Number Multi Dropdown</option> -->
+            </optgroup>
             <optgroup label="Relations">
               <option value='HAS_ONE'>Has One</option>
               <option value='BELONGS_TO'>Belongs To</option>
@@ -128,6 +135,13 @@
               <!-- <option value='HAS_AND_BELONGS_TO_MANY'>Has And Belongs To Many</option> -->
             </optgroup>
           </select>
+        </div>
+
+        <!-- DROPDOWN BUILDER -->
+        <div class="form-group" v-if="selectedAttr.datatype === 'TEXT_SELECT' || selectedAttr.datatype === 'NUMBER_SELECT'">
+          <label>Dropdown Options</label>
+          <small class="form-text text-muted">Available options for this dropdown menu.</small>
+          <ArrayInput v-model="selectedAttr.datatypeOptions.dropdownOptions" :type="selectedAttr.datatype" />
         </div>
 
         <!-- SCHEMA Options -->
@@ -236,12 +250,14 @@ import _ from 'lodash'
 import store from '@/store'
 import draggable from 'vuedraggable'
 import AttributeItem from '../../schema_edit/components/workflow_item'
+import ArrayInput from '@/components/ArrayInput'
 
 export default {
   props: ['schema'],
   components: {
     draggable,
-    AttributeItem
+    AttributeItem,
+    ArrayInput
   },
   methods: {
     addAttribute () {
