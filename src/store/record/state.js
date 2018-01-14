@@ -9,7 +9,8 @@ const state = {
         name: 'Al Schwaa',
         location: 'Troy, NY',
         phone: '+1 (518) 212-8923',
-        email: 'al@schwaa.com'
+        email: 'al@schwaa.com',
+        address_id: 'AD_51111498775682'
       }
     },
     {
@@ -76,21 +77,14 @@ const state = {
       }
     },
     {
-      _id: 'rec_27255131279180',
-      schema_id: 'schema_10301016043421',
+      schema_id: 'schema_14808974981067',
+      _id: 'AD_51111498775682',
       attributes: {
-        contact_id: 'rec_32976293799615',
-        type: 'Mobile',
-        value: '512-845-7896'
-      }
-    },
-    {
-      _id: 'rec_56843163584340',
-      schema_id: 'schema_10301016043421',
-      attributes: {
-        contact_id: 'rec_32976293799615',
-        type: 'Email',
-        value: 'schwaa@foo.biz'
+        street_address: '123 South St',
+        street_address_two: 'Suite 320',
+        city: 'Troy',
+        state: 'New York',
+        zip_code: '12180'
       }
     }
   ]
