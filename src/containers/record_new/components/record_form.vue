@@ -29,7 +29,7 @@
       <input type="color" class="form-control" :placeholder="attr.label" v-model="record.attributes[attr.identifier]" v-if="attr.datatype === 'COLOR'">
 
       <!-- PHONE_NUMBER -->
-      <masked-input type="tel" class="" :placeholder="attr.label" v-model="record.attributes[attr.identifier]" mask="\+\1 (111) 111-1111" v-if="attr.datatype === 'PHONE_NUMBER'"/>
+      <masked-input type="tel" class="form-control" :placeholder="attr.label" v-model="record.attributes[attr.identifier]" mask="\+\1 (111) 111-1111" v-if="attr.datatype === 'PHONE_NUMBER'"/>
 
       <!-- BELONGS_TO -->
       <select class="form-control" v-model="record.attributes[attr.identifier]" v-if="attr.datatype === 'BELONGS_TO'">
@@ -70,11 +70,13 @@
 import _ from 'lodash'
 import store from '@/store'
 import MaskedInput from 'vue-masked-input'
+import Select2 from 'vue-select'
 
 export default {
   props: ['schema', 'record', 'relatedAttr', 'persistRecord', 'cancelForm'],
   components: {
-    MaskedInput
+    MaskedInput,
+    Select2
   },
   methods: {
     getColspanCss (attr) {
