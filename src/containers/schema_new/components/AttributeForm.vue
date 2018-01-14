@@ -249,7 +249,7 @@
 import _ from 'lodash'
 import store from '@/store'
 import draggable from 'vuedraggable'
-import AttributeItem from '../../schema_edit/components/workflow_item'
+import AttributeItem from './AttributeItem'
 import ArrayInput from '@/components/ArrayInput'
 
 export default {

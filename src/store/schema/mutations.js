@@ -32,7 +32,7 @@ const mutations = {
     state.selectedAttribute = _.cloneDeep(attr)
   },
   selectSchema (state, { _id }) {
-    state.selectedSchema = _.cloneDeep(_.find(state.collection, { _id }))
+    state.selectedSchema = _id
   },
   clearSelectedSchema (state) {
     state.selectedSchema = null
@@ -41,9 +41,7 @@ const mutations = {
     state.selectedAttribute = null
   },
   removeAttribute (state, { schema, attr }) {
-    // Updates schema.attributes
     schema.attributes = _.filter(schema.attributes, (s) => { return s._id !== attr._id })
-    // TODO - remove REVERSE RELATION
   },
   persistSelectedAttribute (state, { schema, attr }) {
     if (attr._id) {
@@ -62,7 +60,7 @@ const mutations = {
       schema.attributes.push(_.cloneDeep(attr))
     }
 
-    // TODO - add REVERSE RELATION
+    // QUESTION - add REVERSE RELATION?
     // if (attr.datatype === 'BELONGS_TO') {
     //   let relatedSchema = _.find(state.collection, { _id: attr.datatypeOptions.schema_id })
     //   let relatedAttr = _.filter(relatedSchema.attributes, (a) => { return a.datatype === 'HAS_MANY' && a.datatypeOptions.schema_id === schema._id })
