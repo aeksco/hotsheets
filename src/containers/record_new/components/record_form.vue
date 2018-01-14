@@ -1,14 +1,14 @@
 
 <template>
 <div class="row">
-
   <div v-for="attr in schema.attributes" :key="attr._id" :class="getColspanCss(attr)" v-if="attr.datatype !== 'HAS_MANY' && attr.datatype !== 'HAS_ONE'">
     <div class="form-group">
       <label>
         {{ attr.label }}
         <span class='text-danger' v-if="attr.required">*</span>
       </label>
-      <small class="form-text text-muted">{{attr.help}}</small>
+      <small class="form-text text-danger" v-if="errors[attr.identifier]">{{errors[attr.identifier]}}</small>
+      <small class="form-text text-muted" v-else>{{attr.help}}</small>
 
       <!-- TEXT -->
       <input type="text" class="form-control" :placeholder="attr.label" v-model="record.attributes[attr.identifier]" v-if="attr.datatype === 'TEXT'">
@@ -58,12 +58,12 @@
       Cancel
     </button>
 
-    <button class="btn btn-outline-success" @click="persistRecord(schema, record, relatedAttr)" v-if="record._id">
+    <button class="btn btn-outline-success" @click="validateAttributes()" v-if="record._id">
       <i class="fa fa-fw fa-plus mr-1"></i>
       Update {{ schema.label }}
     </button>
 
-    <button class="btn btn-outline-success" @click="persistRecord(schema, record, relatedAttr)" v-if="!record._id">
+    <button class="btn btn-outline-success" @click="validateAttributes()" v-if="!record._id">
       <i class="fa fa-fw fa-plus mr-1"></i>
       Create {{ schema.label }}
     </button>
@@ -86,7 +86,33 @@ export default {
     MaskedInput,
     vSelect
   },
+  data () {
+    let errors = {}
+
+    _.each(this.schema.attributes, (attr) => {
+      errors[attr.identifier] = null
+    })
+
+    return { errors }
+  },
   methods: {
+    // TODO - most of validateAttributes should be moved into Vuex store
+    validateAttributes () {
+      let submit = true
+      _.each(this.schema.attributes, (attr) => {
+        if (attr.required && !this.record.attributes[attr.identifier]) {
+          submit = false
+          this.errors[attr.identifier] = `${attr.label} is required.`
+        } else {
+          this.errors[attr.identifier] = null
+        }
+      })
+
+      // Persists the record if validations pass
+      if (submit) {
+        this.persistRecord(this.schema, this.record, this.relatedAttr)
+      }
+    },
     getColspanCss (attr) {
       if (!attr.col_span) {
         return 'col-lg-12'
