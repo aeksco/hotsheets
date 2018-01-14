@@ -36,10 +36,13 @@
         <option v-for="rec in schemaDropdown(attr.datatypeOptions.schema_id)" :key="rec._id" :value="rec._id">{{ rec.attributes[attr.datatypeOptions.schema_attribute_identifier] }}</option>
       </select>
 
+      <!-- TEXT_SELECT & NUMBER_SELECT (OLD) -->
+      <!-- <select class="form-control" v-model="record.attributes[attr.identifier]" v-if="attr.datatype === 'TEXT_SELECT' || attr.datatype === 'NUMBER_SELECT'"> -->
+        <!-- <option v-for="opt in attr.datatypeOptions.dropdownOptions" :key="opt" :value="opt">{{ opt }}</option> -->
+      <!-- </select> -->
+
       <!-- TEXT_SELECT & NUMBER_SELECT -->
-      <select class="form-control" v-model="record.attributes[attr.identifier]" v-if="attr.datatype === 'TEXT_SELECT' || attr.datatype === 'NUMBER_SELECT'">
-        <option v-for="opt in attr.datatypeOptions.dropdownOptions" :key="opt" :value="opt">{{ opt }}</option>
-      </select>
+      <v-select class="bg-light text-dark" :value.sync="record.attributes[attr.identifier]" :options="attr.datatypeOptions.dropdownOptions" v-if="attr.datatype === 'TEXT_SELECT' || attr.datatype === 'NUMBER_SELECT'" />
 
     </div>
   </div>
@@ -70,13 +73,13 @@
 import _ from 'lodash'
 import store from '@/store'
 import MaskedInput from 'vue-masked-input'
-import Select2 from 'vue-select'
+import vSelect from 'vue-select'
 
 export default {
   props: ['schema', 'record', 'relatedAttr', 'persistRecord', 'cancelForm'],
   components: {
     MaskedInput,
-    Select2
+    vSelect
   },
   methods: {
     getColspanCss (attr) {
@@ -96,11 +99,21 @@ export default {
 </script>
 
 <style lang="sass">
+  @import '../../../sass/vendor.sass'
+
   .form-group
     label
       margin-bottom: 0
     small
       margin-bottom: .6rem
+
+  .v-select
+    border-radius: $border-radius
+    ul.dropdown-menu
+      border-radius: $border-radius
+      li
+        color: #000 !important
+
 </style>
 
 
