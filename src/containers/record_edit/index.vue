@@ -26,7 +26,7 @@ export default {
       let allRecords = store.getters['record/collection']
       let record = _.find(allRecords, { _id: this.record_id })
 
-      return { schema, record }
+      return { schema: schema, record: _.cloneDeep(record) }
     }
   }
 }

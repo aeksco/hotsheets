@@ -8,8 +8,8 @@ const state = {
       attributes: {
         name: 'Al Schwaa',
         location: 'Troy, NY',
-        phone: '1234567890',
-        email: 'foo@bar.com'
+        phone: '+1 (518) 212-8923',
+        email: 'al@schwaa.com'
       }
     },
     {
@@ -18,8 +18,8 @@ const state = {
       attributes: {
         name: 'John Doe',
         location: 'NY, NY',
-        phone: '0987654321',
-        email: 'bar@foo.com'
+        phone: '+1 (518) 219-2219',
+        email: 'john@doe.com'
       }
     },
     {
