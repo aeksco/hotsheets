@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import store from '@/store'
 // import { TEXT_WORKFLOW_STEP, MACRO_WORKFLOW_STEP, DELAY_WORKFLOW_STEP, KEY_WORKFLOW_STEP, KEY_DN_POSITION, KEY_UP_POSITION, KEY_PR_POSITION } from './constants'
 
 // // // //
@@ -22,7 +23,17 @@ const mutations = {
       state.collection.push(schema)
     }
 
-    // TODO - Update existing records of this schema
+    // Update existing records of this schema
+    _.each(schema.attributes, (attr) => {
+      if (attr.datatype === 'HAS_AND_BELONGS_TO_MANY') {
+        let allRecords = store.getters['record/collection']
+        _.each(allRecords, (r) => {
+          if (!r.attributes[attr.identifier] || !Array.isArray(r.attributes[attr.identifier])) {
+            r.attributes[attr.identifier] = []
+          }
+        })
+      }
+    })
 
     // Updates attributes order
     schema.attributes = _.orderBy(schema.attributes, ['order'], ['asc'])
