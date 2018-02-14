@@ -7,21 +7,16 @@
 
 <script>
 import LayoutView from './components/layout.vue'
-import store from '@/store'
-
+import { mapGetters } from 'vuex'
 export default {
   components: {
     LayoutView
   },
   metaInfo: {
-    title: 'Schemas' // title is now "HotSheets - Schemas"
+    title: 'Sheets'
   },
-  computed: {
-    collection () {
-      return store.getters['schema/collection']
-    }
-  }
+  computed: mapGetters({
+    collection: 'schema/collection'
+  })
 }
 </script>
-
-

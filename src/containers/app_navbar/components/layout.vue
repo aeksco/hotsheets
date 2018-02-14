@@ -19,7 +19,7 @@
 
         <li class="nav-item">
           <a class="nav-link" href="#/schemas/new">
-            <i class="fa fa-fw fa-plus" v-b-tooltip.hover.right title="New Schema"></i>
+            <i class="fa fa-fw fa-plus" v-b-tooltip.hover.right title="New Sheet"></i>
           </a>
         </li>
 
