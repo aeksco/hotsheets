@@ -4,7 +4,7 @@
 
   <table class="table table-striped table-hover">
     <thead>
-      <th v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype !=='HAS_MANY' && attr.datatype !=='HAS_AND_BELONGS_TO_MANY' && attr.datatype !=='HAS_ONE' && attr.identifier !== ignoreAttribute">
+      <th v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype !=='HAS_MANY' && attr.datatype !=='HAS_ONE' && attr.identifier !== ignoreAttribute">
         {{attr.label}}
         <i class="fa fa-fw fa-question-circle-o" v-b-tooltip.hover.bottom :title="attr.help" ></i>
       </th>
@@ -15,7 +15,7 @@
       <tr v-for="record in records" :key="record._id">
 
         <!-- Record Data -->
-        <td v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype !== 'HAS_MANY' && attr.datatype !== 'HAS_AND_BELONGS_TO_MANY' && attr.datatype !=='HAS_ONE' && attr.identifier !== ignoreAttribute">
+        <td v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype !== 'HAS_MANY' && attr.datatype !=='HAS_ONE' && attr.identifier !== ignoreAttribute">
           <a v-if="attr.datatype === 'BELONGS_TO'" :href="getLinkedSchemaHref(attr, record.attributes[attr.identifier])">
             {{ getLinkedSchemaLabel(attr, record.attributes[attr.identifier]) }}
           </a>
@@ -32,8 +32,12 @@
           <span v-else-if="attr.datatype === 'COLOR'">
             <i class="fa fa-fw fa-lg fa-square" :style="'color:' + record.attributes[attr.identifier]"></i>
           </span>
+          <span v-else-if="attr.datatype === 'HAS_AND_BELONGS_TO_MANY'">
+            <!-- {{ record.attributes[attr.identifier].length }} {{ getRelatedSchema(attr).label_plural }} -->
+            {{ record.attributes[attr.identifier].length }} {{ getRelatedSchema(attr).label_plural }}
+          </span>
           <span v-else>
-            {{record.attributes[attr.identifier] || attr.datatypeOptions.default }}
+            {{ record.attributes[attr.identifier] || attr.datatypeOptions.default }}
           </span>
         </td>
 
@@ -107,6 +111,11 @@ export default {
       if (!record) return
       let schema = _.find(allSchemas, { _id: record.schema_id })
       return '#/schemas/' + schema._id + '/records/' + record._id
+    },
+    getRelatedSchema (attr) {
+      let allSchemas = store.getters['schema/collection']
+      let schema = _.find(allSchemas, { _id: attr.datatypeOptions.schema_id })
+      return schema
     },
     getLinkedSchemaLabel (attr, record_id) {
       let allRecords = store.getters['record/collection']

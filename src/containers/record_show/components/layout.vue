@@ -69,6 +69,9 @@
                 <i class="fa fa-fw fa-plus mr-1"></i>
                 Add
               </a>
+              <button class="btn btn-outline-light btn-sm">
+                <i class="fa fa-resize"></i>
+              </button>
             </div>
           </div>
 
@@ -87,14 +90,19 @@
             <div class="col-lg-4">
 
               <!-- Add HAS_MANY Confirmation -->
-              <button class="btn btn-sm btn-outline-success" v-b-modal="'modal_has_many_' + record._id">
+              <button class="btn btn-sm btn-outline-success" v-b-modal="'modal_has_many_' + attr._id">
                 <i class="fa fa-fw fa-plus mr-1"></i>
                 Add
               </button>
 
+              <!--  -->
+              <button class="btn btn-outline-light btn-sm">
+                <i class="fa fa-arrows"></i>
+              </button>
+
               <!-- Bootstrap Modal Component -->
               <!-- TODO - move this outside the scope of the loop, and instead pass only the options into a single instance -->
-              <b-modal :id="'modal_has_many_' + record._id"
+              <b-modal :id="'modal_has_many_' + attr._id"
                 :title="'Add ' + relatedSchema(attr).label_plural"
                 @ok="commitHasAndBelongsTo()"
                 size="lg"
@@ -221,7 +229,6 @@ export default {
   },
   methods: {
     commitHasAndBelongsTo () {
-      // console.log('commitHasAndBelongsTo')
       store.commit('record/persist', { schema: this.schema, record: this.record, redirect: false })
     },
     deleteRelated (attr) {
@@ -270,8 +277,10 @@ export default {
     relatedSchemaName (attr) { // TODO - this should be moved into a getter
       let allSchemas = store.getters['schema/collection']
       let relatedSchema = _.find(allSchemas, { _id: attr.datatypeOptions.schema_id })
-      if (attr.datatype === 'HAS_MANY' || attr.datatype === 'HAS_AND_BELONGS_TO_MANY') {
+      if (attr.datatype === 'HAS_MANY') {
         return relatedSchema.label_plural
+      } else if (attr.datatype === 'HAS_AND_BELONGS_TO_MANY') {
+        return attr.label
       } else {
         return relatedSchema.label
       }

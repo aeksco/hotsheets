@@ -129,10 +129,23 @@
               <!-- <option value='NUMBER_SELECT_MULTI'>Number Multi Dropdown</option> -->
             </optgroup>
             <optgroup label="Relations">
+              <!-- HAS_ONE works as expected -->
               <option value='HAS_ONE'>Has One</option>
+
+              <!-- BELONGS_TO works as expected -->
               <option value='BELONGS_TO'>Belongs To</option>
+
+              <!-- BELONGS_TO_INV is the inverse of BELONGS_TO -->
+              <!-- TODO - this should be auto-populated on the opposing  -->
+              <!-- <option value='BELONGS_TO_INV'>Belongs To (INVERSE)</option> -->
+
+              <!-- HAS_MANY is currently inverse of BELONGS_TO. -->
+              <!-- TODO - HAS_MANY should be renamed to  -->
               <option value='HAS_MANY'>Has Many</option>
+
+              <!-- TODO - HAS_AND_BELONGS_TO_MANY should be renamed to HAS_MANY -->
               <option value='HAS_AND_BELONGS_TO_MANY'>Has And Belongs To Many</option>
+
             </optgroup>
           </select>
         </div>

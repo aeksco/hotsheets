@@ -21,6 +21,9 @@ const mutations = {
       schema._id = 'schema_' + Math.floor((Math.random() * 100000000000000) + 1)
       state.collection.push(schema)
     }
+
+    // TODO - Update existing records of this schema
+
     // Updates attributes order
     schema.attributes = _.orderBy(schema.attributes, ['order'], ['asc'])
     state.selectedSchema = null
