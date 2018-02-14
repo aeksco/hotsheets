@@ -10,6 +10,15 @@ const mutations = {
     state.collection = _.sortBy(collection, (s) => { return s.order })
   },
   persist (state, { schema, record, redirect }) {
+    // Validates default value for HAS_AND_BELONGS_TO_MANY
+    _.each(schema.attributes, (attr) => {
+      if (attr.datatype === 'HAS_AND_BELONGS_TO_MANY') {
+        if (!record.attributes[attr.identifier]) {
+          record.attributes[attr.identifier] = []
+        }
+      }
+    })
+
     if (record._id) {
       state.collection = _.map(state.collection, (s) => {
         if (s._id === record._id) {

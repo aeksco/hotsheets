@@ -25,7 +25,7 @@
             <div class="col-lg-12">
               <table class="table table-striped table-hover">
                 <tbody>
-                  <tr v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype !== 'HAS_MANY' && attr.datatype !== 'HAS_ONE'">
+                  <tr v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype !== 'HAS_MANY' && attr.datatype !== 'HAS_AND_BELONGS_TO_MANY' && attr.datatype !== 'HAS_ONE'">
                     <td class='text-left'>
                       <strong>
                         {{attr.label}}
@@ -53,7 +53,7 @@
 
     <div class="row">
       <!-- Relation Viewer -->
-      <div :class="'mt-4 col-lg-' + attr.col_span" v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype === 'HAS_MANY' || attr.datatype === 'HAS_ONE'">
+      <div :class="'mt-4 col-lg-' + attr.col_span" v-for="attr in schema.attributes" :key="attr._id" v-if="attr.datatype === 'HAS_MANY' || attr.datatype === 'HAS_AND_BELONGS_TO_MANY' || attr.datatype === 'HAS_ONE'">
 
         <!-- HAS_MANY Relation  -->
         <div class="card card-body bg-dark color-light border-light" v-if="attr.datatype === 'HAS_MANY'">
@@ -73,6 +73,53 @@
           </div>
 
           <RecordTable :schema="relatedSchema(attr)" :records="getRelatedRecords(attr)" :ignoreAttribute="schema.identifier + '_id'"/>
+        </div>
+
+        <!-- HAS_AND_BELONGS_TO_MANY Relation -->
+        <div class="card card-body bg-dark color-light border-light" v-if="attr.datatype === 'HAS_AND_BELONGS_TO_MANY'">
+          <div class="row">
+            <div class="col-lg-8">
+              <p class="lead mb">
+                <i :class="'fa fa-fw ' + relatedSchema(attr).display.icon" v-if="relatedSchema(attr).display.icon"></i>
+                {{ relatedSchemaName(attr) }}
+              </p>
+            </div>
+            <div class="col-lg-4">
+
+              <!-- Add HAS_MANY Confirmation -->
+              <button class="btn btn-sm btn-outline-success" v-b-modal="'modal_has_many_' + record._id">
+                <i class="fa fa-fw fa-plus mr-1"></i>
+                Add
+              </button>
+
+              <!-- Bootstrap Modal Component -->
+              <!-- TODO - move this outside the scope of the loop, and instead pass only the options into a single instance -->
+              <b-modal :id="'modal_has_many_' + record._id"
+                :title="'Add ' + relatedSchema(attr).label_plural"
+                @ok="commitHasAndBelongsTo()"
+                size="lg"
+                header-bg-variant="dark"
+                header-text-variant="light"
+                body-bg-variant="dark"
+                body-text-variant="light"
+                footer-bg-variant="success"
+                footer-text-variant="light"
+                ok-variant='success'
+                ok-title='Submit'
+                cancel-title='Cancel'
+                cancel-variant='dark'
+              >
+                <!-- <p class="text-left">Are you sure you want to destroy this {{ schema.label }}?</p> -->
+                <RecordSelector :schema="relatedSchema(attr)" :records="getAvailableRecords(attr)" v-model="record.attributes[attr.identifier]" />
+
+              </b-modal>
+
+            </div>
+          </div>
+
+          <!-- HAS_AND_BELONGS_TO_MANY table -->
+          <RecordTable :schema="relatedSchema(attr)" :records="getRelatedRecords(attr)" :ignoreAttribute="schema.identifier + '_id'"/>
+
         </div>
 
         <!-- HAS_ONE Relation -->
@@ -157,13 +204,15 @@
 import _ from 'lodash'
 import store from '@/store'
 import RecordTable from '@/components/RecordTable'
+import RecordSelector from '@/components/RecordSelector'
 import RecordForm from '@/containers/record_new/components/record_form'
 
 export default {
   props: ['schema', 'record'],
   components: {
     RecordTable,
-    RecordForm
+    RecordForm,
+    RecordSelector
   },
   data () {
     return {
@@ -171,6 +220,10 @@ export default {
     }
   },
   methods: {
+    commitHasAndBelongsTo () {
+      // console.log('commitHasAndBelongsTo')
+      store.commit('record/persist', { schema: this.schema, record: this.record, redirect: false })
+    },
     deleteRelated (attr) {
       // Removes the association from the current record
       this.record.attributes[attr.identifier] = null
@@ -217,11 +270,21 @@ export default {
     relatedSchemaName (attr) { // TODO - this should be moved into a getter
       let allSchemas = store.getters['schema/collection']
       let relatedSchema = _.find(allSchemas, { _id: attr.datatypeOptions.schema_id })
-      if (attr.datatype === 'HAS_MANY') {
+      if (attr.datatype === 'HAS_MANY' || attr.datatype === 'HAS_AND_BELONGS_TO_MANY') {
         return relatedSchema.label_plural
       } else {
         return relatedSchema.label
       }
+    },
+    getAvailableRecords (attr) {
+      let allSchemas = store.getters['schema/collection']
+      let allRecords = store.getters['record/collection']
+      let relatedSchema = _.find(allSchemas, { _id: attr.datatypeOptions.schema_id })
+
+      // TODO - handle other attr types
+      return _.filter(allRecords, (r) => {
+        return r.schema_id === relatedSchema._id
+      })
     },
     getRelatedRecords (attr) { // TODO - this should be moved into a getter
       let allSchemas = store.getters['schema/collection']
@@ -232,6 +295,29 @@ export default {
       if (attr.datatype === 'HAS_MANY') {
         let relatedRecords = _.filter(allRecords, (r) => {
           return r.schema_id === relatedSchema._id && r.attributes[`${this.schema.identifier}_id`] === this.record._id
+        })
+        return relatedRecords
+      } else if (attr.datatype === 'HAS_AND_BELONGS_TO_MANY') {
+        let relatedRecords = _.filter(allRecords, (r) => {
+          // return r.schema_id === relatedSchema._id
+
+          if (r.schema_id === relatedSchema._id) {
+            // Adds default value
+            // TODO - this should be moved
+            if (!r.attributes[`${this.schema.identifier}_ids`]) {
+              r.attributes[`${this.schema.identifier}_ids`] = []
+            }
+
+            // Checks if there's a reference to this related record
+            // if (r.attributes[`${this.schema.identifier}_ids`].includes()) {
+            //   return true
+            // }
+            // console.log(r._id)
+            // console.log(this.record.attributes[attr.identifier])
+            return this.record.attributes[attr.identifier].includes(r._id)
+          }
+          // && r.attributes[`${this.schema.identifier}_ids`].includes(this.record._id)
+          // return r.schema_id === relatedSchema._id && r.attributes[`${this.schema.identifier}_id`] === this.record._id
         })
         return relatedRecords
       } else if (attr.datatype === 'HAS_ONE') {
