@@ -87,7 +87,7 @@
                 {{ relatedSchemaName(attr) }}
               </p>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 text-right">
 
               <!-- Add HAS_MANY Confirmation -->
               <button class="btn btn-sm btn-outline-success" v-b-modal="'modal_has_many_' + attr._id">
@@ -100,29 +100,29 @@
                 <i class="fa fa-arrows"></i>
               </button>
 
-              <!-- Bootstrap Modal Component -->
-              <!-- TODO - move this outside the scope of the loop, and instead pass only the options into a single instance -->
-              <b-modal :id="'modal_has_many_' + attr._id"
-                :title="'Add ' + relatedSchema(attr).label_plural"
-                @ok="commitHasAndBelongsTo()"
-                size="lg"
-                header-bg-variant="dark"
-                header-text-variant="light"
-                body-bg-variant="dark"
-                body-text-variant="light"
-                footer-bg-variant="success"
-                footer-text-variant="light"
-                ok-variant='success'
-                ok-title='Submit'
-                cancel-title='Cancel'
-                cancel-variant='dark'
-              >
-                <!-- <p class="text-left">Are you sure you want to destroy this {{ schema.label }}?</p> -->
-                <RecordSelector :schema="relatedSchema(attr)" :records="getAvailableRecords(attr)" v-model="record.attributes[attr.identifier]" />
-
-              </b-modal>
-
             </div>
+
+            <!-- Bootstrap Modal Component -->
+            <!-- TODO - move this outside the scope of the loop, and instead pass only the options into a single instance -->
+            <b-modal :id="'modal_has_many_' + attr._id"
+              :title="'Add ' + relatedSchema(attr).label_plural"
+              @ok="commitHasAndBelongsTo()"
+              size="lg"
+              header-bg-variant="dark"
+              header-text-variant="light"
+              body-bg-variant="dark"
+              body-text-variant="light"
+              footer-bg-variant="success"
+              footer-text-variant="light"
+              ok-variant='success'
+              ok-title='Submit'
+              cancel-title='Cancel'
+              cancel-variant='dark'
+            >
+              <!-- <p class="text-left">Are you sure you want to destroy this {{ schema.label }}?</p> -->
+              <RecordSelector :schema="relatedSchema(attr)" :records="getAvailableRecords(attr)" v-model="record.attributes[attr.identifier]" />
+
+            </b-modal>
           </div>
 
           <!-- HAS_AND_BELONGS_TO_MANY table -->
@@ -308,8 +308,6 @@ export default {
         return relatedRecords
       } else if (attr.datatype === 'HAS_AND_BELONGS_TO_MANY') {
         let relatedRecords = _.filter(allRecords, (r) => {
-          // return r.schema_id === relatedSchema._id
-
           if (r.schema_id === relatedSchema._id) {
             // Adds default value
             // TODO - this should be moved
@@ -321,12 +319,8 @@ export default {
             // if (r.attributes[`${this.schema.identifier}_ids`].includes()) {
             //   return true
             // }
-            // console.log(r._id)
-            // console.log(this.record.attributes[attr.identifier])
             return this.record.attributes[attr.identifier].includes(r._id)
           }
-          // && r.attributes[`${this.schema.identifier}_ids`].includes(this.record._id)
-          // return r.schema_id === relatedSchema._id && r.attributes[`${this.schema.identifier}_id`] === this.record._id
         })
         return relatedRecords
       } else if (attr.datatype === 'HAS_ONE') {
