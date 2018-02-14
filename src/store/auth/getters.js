@@ -8,7 +8,10 @@ const getters = {
     return state.token || false
   },
   isAuthenticated: state => {
-    return state.token
+    return state.googleAuthenticated
+  },
+  currentUser: state => {
+    return state.googleUser
   }
 }
 

@@ -1,5 +1,5 @@
 
-// <%= resource_title %> Module Getters
+// <%= schema.label %> Module Getters
 const getters = {
   collection: state => {
     return state.collection

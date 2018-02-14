@@ -1,7 +1,7 @@
 
 <template>
   <div class="container">
-    <h2>Schemas</h2>
+    <h2>My Sheets</h2>
   	<hr>
 
     <div class='row'>
@@ -72,13 +72,11 @@
 <!-- // // // //  -->
 
 <script>
-import store from '@/store'
-
 export default {
   props: ['collection'],
   methods: {
     destroySchema (schema) {
-      store.commit('schema/destroy', { schema })
+      this.$store.commit('schema/destroy', { schema })
     }
   }
 }

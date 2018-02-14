@@ -15,14 +15,44 @@
           {{item.label}}
         </span>
 
+        <!-- TEXT_SELECT -->
+        <span class="badge" v-if="item.datatype === 'TEXT_SELECT'">
+          <i class="fa fa-list mr-2"></i>
+          {{item.label}}
+        </span>
+
         <!-- NUMBER -->
         <span class="badge" v-if="item.datatype === 'NUMBER'">
           <i class="fa fa-hashtag mr-2"></i>
           {{item.label}}
         </span>
 
-        <!-- SCHEMA -->
-        <span class="badge" v-if="item.datatype === 'SCHEMA'">
+        <!-- NUMBER_SELECT -->
+        <span class="badge" v-if="item.datatype === 'NUMBER_SELECT'">
+          <i class="fa fa-list-ol mr-2"></i>
+          {{item.label}}
+        </span>
+
+        <!-- BELONGS_TO -->
+        <span class="badge" v-if="item.datatype === 'BELONGS_TO'">
+          <i class="fa fa-link mr-2"></i>
+          {{item.label}}
+        </span>
+
+        <!-- HAS_ONE -->
+        <span class="badge" v-if="item.datatype === 'HAS_ONE'">
+          <i class="fa fa-link mr-2"></i>
+          {{item.label}}
+        </span>
+
+        <!-- HAS_MANY -->
+        <span class="badge" v-if="item.datatype === 'HAS_MANY'">
+          <i class="fa fa-link mr-2"></i>
+          {{item.label}}
+        </span>
+
+        <!-- HAS_AND_BELONGS_TO_MANY -->
+        <span class="badge" v-if="item.datatype === 'HAS_AND_BELONGS_TO_MANY'">
           <i class="fa fa-link mr-2"></i>
           {{item.label}}
         </span>
@@ -32,6 +62,30 @@
           <i class="fa fa-calendar-o mr-2"></i>
           {{item.label}}
         </span>
+
+        <!-- COLOR -->
+        <span class="badge" v-if="item.datatype === 'COLOR'">
+          <i class="fa fa-eyedropper mr-2"></i>
+          {{item.label}}
+        </span>
+
+        <!-- TIME -->
+        <span class="badge" v-if="item.datatype === 'TIME'">
+          <i class="fa fa-clock-o mr-2"></i>
+          {{item.label}}
+        </span>
+
+        <!-- PHONE_NUMBER -->
+        <span class="badge" v-if="item.datatype === 'PHONE_NUMBER'">
+          <i class="fa fa-phone mr-2"></i>
+          {{item.label}}
+        </span>
+
+        <!-- CURRENCY_USD -->
+        <!-- <span class="badge" v-if="item.datatype === 'CURRENCY_USD'"> -->
+          <!-- <i class="fa fa-usd mr-2"></i> -->
+          <!-- {{item.label}} -->
+        <!-- </span> -->
 
         <!-- BOOL -->
         <span class="badge" v-if="item.datatype === 'BOOL'">
@@ -51,9 +105,9 @@
           <i class="fa fa-snowflake-o text-info"></i>
         </span>
         <!-- PREFERRED -->
-        <span class="badge" v-if="item.preferred" v-b-tooltip.hover.top title="Preferred">
-          <i class="fa fa-star-o text-warning"></i>
-        </span>
+        <!-- <span class="badge" v-if="item.preferred" v-b-tooltip.hover.top title="Preferred"> -->
+          <!-- <i class="fa fa-star-o text-warning"></i> -->
+        <!-- </span> -->
       </div>
 
       <div class="col-lg-3 text-right controls"

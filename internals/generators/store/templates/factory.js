@@ -3,16 +3,16 @@ import AbstractFactory from '../lib/factory'
 // // // //
 
 // Creates new AbstractFactory instance
-const <%= resource_title %>Factory = new AbstractFactory({
-  API_ROOT: '/api/<%= resource_route %>',
-  REDIRECT_SUCCESS: '#/<%= resource_route %>',
+const <%= schema.label %>Factory = new AbstractFactory({
+  API_ROOT: '/api/<%= schema.identifier_plural %>',
+  REDIRECT_SUCCESS: '#/<%= schema.identifier_plural %>',
   messages: {
-    CREATE_SUCCESS: 'Created <%= resource_title %>.',
-    UPDATE_SUCCESS: 'Updated <%= resource_title %>.',
-    DESTROY_SUCCESS: 'Destroyed <%= resource_title %>.'
+    CREATE_SUCCESS: 'Created <%= schema.label %>.',
+    UPDATE_SUCCESS: 'Updated <%= schema.label %>.',
+    DESTROY_SUCCESS: 'Destroyed <%= schema.label %>.'
   }
 })
 
 // // // //
 
-export default <%= resource_title %>Factory
+export default <%= schema.label %>Factory

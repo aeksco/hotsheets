@@ -11,20 +11,20 @@ import LayoutView from './components/layout.vue'
 import store from '@/store'
 
 export default {
-  name: '<%= resource_name %>_list',
+  name: '<%= schema.identifier %>_list',
   components: {
     LayoutView
   },
   metaInfo: {
-    title: '<%= resource_title %>' // title is now "NAME - <%= resource_title %>"
+    title: '<%= schema.label_plural %>' // title is now "NAME - <%= schema.label_plural %>"
   },
   computed: {
     collection () {
-      return store.getters['<%= resource_name %>/collection']
+      return store.getters['<%= schema.identifier %>/collection']
     }
   },
   mounted () {
-    return store.dispatch('<%= resource_name %>/fetchCollection')
+    return store.dispatch('<%= schema.identifier %>/fetchCollection')
   }
 }
 </script>

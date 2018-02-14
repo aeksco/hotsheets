@@ -11,7 +11,7 @@
 
       <div class="row my-2">
         <div class="col-lg-12 text-center">
-          <p class="lead"><a href="https://github.com/aeksco" target="_blank"> HotSheets</a> is an open-source tool for building on-the-fly user interfaces for collecting tabular data.</p>
+          <p class="lead"><a href="https://github.com/aeksco" target="_blank"> HotSheets</a> is an open-source tool for building user interfaces to collect and view tabular data.</p>
         </div>
       </div>
 

@@ -1,3 +1,5 @@
+import store from '@/store'
+import router from '@/routers'
 
 // Project Module mutations
 const mutations = {
@@ -15,6 +17,17 @@ const mutations = {
 
   set_user (state, user) {
     state.user = user
+  },
+
+  googleAuthenticated (state, status) {
+    state.googleAuthenticated = status
+    store.dispatch('auth/getGoogleUser')
+  },
+
+  googleUser (state, user) {
+    state.googleUser = user
+    store.dispatch('google_sheet/loadSheetAPI')
+    router.push('/')
   }
 }
 

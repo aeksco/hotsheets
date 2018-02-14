@@ -1,15 +1,32 @@
 
 <template>
   <div class="container">
-    <a href="#/<%= resource_route %>">Back</a>
-    <h2><%= resource_title %> - New</h2>
+    <a href="#/<%= schema.identifier_plural %>">Back</a>
+    <h2><%= schema.label %> - New</h2>
     <hr>
 
     <form v-on:submit.prevent="formSubmit">
+    <% for (index in schema.attributes) { %>
+    <% let attr = schema.attributes[index] %>
       <div class="form-group">
-        <label name="<%= resource_name %>_label">Label</label>
-        <input type="text" class="form-control" v-model="model.label" id="<%= resource_name %>_label" required>
+        <label>
+          <%= attr.label %>
+          <% if (attr.required) { %><span class='text-danger'>*</span><% } %>
+        </label>
+        <small class="form-text text-muted"><%= attr.help %></small>
+      <% if (attr.datatype === 'BOOL') { %>
+        <input type="checkbox" class="form-control" v-model="model.<%=attr.identifier%>">
+      <% } else if (attr.datatype === 'TEXT') { %>
+        <input type="text" class="form-control" placeholder="<%= attr.label %>" v-model="model.<%=attr.identifier%>">
+      <% } else if (attr.datatype === 'NUMBER') { %>
+        <input type="number" class="form-control" placeholder="<%= attr.label %>" v-model="model.<%=attr.identifier%>">
+      <% } else if (attr.datatype === 'DATE') { %>
+        <input type="date" class="form-control" placeholder="<%= attr.label %>" v-model="model.<%=attr.identifier%>">
+      <% } else if (attr.datatype === 'TIME') { %>
+        <input type="time" class="form-control" placeholder="<%= attr.label %>" v-model="model.<%=attr.identifier%>">
+      <% } %>
       </div>
+    <% } %>
 
       <div class="form-group">
         <button class="btn btn-primary">Create</button>
@@ -25,28 +42,15 @@
 import store from '@/store'
 
 export default {
-  name: '<%= resource_name %>_new',
-
-  // TODO - abstract this into ProjectForm mixin?
+  name: '<%= schema.identifier %>_new',
   data () {
     return {
       model: {}
     }
   },
-
   methods: {
-
-    // TODO - abstract this into ProjectForm mixin?
     formSubmit () {
-      console.log('formSubmit!')
-      console.log(this.model.label)
-
-      // Assembles the payload being sent to the server
-      let model = {
-        label: this.model.label
-      }
-
-      return store.dispatch('<%= resource_name %>/create', model)
+      return store.dispatch('<%= schema.identifier %>/create', this.model)
     }
   }
 }

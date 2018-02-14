@@ -1,15 +1,32 @@
 
 <template>
   <div class="container">
-    <a :href="'#/<%= resource_route %>/' + id">Back</a>
-    <h2><%= resource_title %> Edit - {{model.name}}</h2>
+    <a :href="'#/<%= schema.identifier_plural %>/' + id">Back</a>
+    <h2><%= schema.label %> Edit - {{model.name}}</h2>
     <hr>
 
     <form v-on:submit.prevent="formSubmit">
-      <div class="form-group">
-        <label name="<%= resource_name %>_label">Label</label>
-        <input type="text" class="form-control" v-model="model.label" id="<%= resource_name %>_label" required>
-      </div>
+      <% for (index in schema.attributes) { %>
+      <% let attr = schema.attributes[index] %>
+        <div class="form-group">
+          <label>
+            <%= attr.label %>
+            <% if (attr.required) { %><span class='text-danger'>*</span><% } %>
+          </label>
+          <small class="form-text text-muted"><%= attr.help %></small>
+        <% if (attr.datatype === 'BOOL') { %>
+          <input type="checkbox" class="form-control" v-model="model.<%=attr.identifier%>">
+        <% } else if (attr.datatype === 'TEXT') { %>
+          <input type="text" class="form-control" placeholder="<%= attr.label %>" v-model="model.<%=attr.identifier%>">
+        <% } else if (attr.datatype === 'NUMBER') { %>
+          <input type="number" class="form-control" placeholder="<%= attr.label %>" v-model="model.<%=attr.identifier%>">
+        <% } else if (attr.datatype === 'DATE') { %>
+          <input type="date" class="form-control" placeholder="<%= attr.label %>" v-model="model.<%=attr.identifier%>">
+        <% } else if (attr.datatype === 'TIME') { %>
+          <input type="time" class="form-control" placeholder="<%= attr.label %>" v-model="model.<%=attr.identifier%>">
+        <% } %>
+        </div>
+      <% } %>
 
       <div class="form-group">
         <button class="btn btn-primary">Update</button>
@@ -31,16 +48,16 @@ export default {
   },
   methods: {
     fetch () {
-      return store.dispatch('<%= resource_name %>/fetchModel', this.id)
+      return store.dispatch('<%= schema.identifier %>/fetchModel', this.id)
     },
     formSubmit () {
       // TODO - validations
-      return store.dispatch('<%= resource_name %>/update', this.model)
+      return store.dispatch('<%= schema.identifier %>/update', this.model)
     }
   },
   computed: {
     model () {
-      return store.getters['<%= resource_name %>/current']
+      return store.getters['<%= schema.identifier %>/current']
     }
   }
 

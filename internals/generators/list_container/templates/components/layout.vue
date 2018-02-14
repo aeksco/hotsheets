@@ -5,12 +5,12 @@
   		<div class="col-lg-12">
 
         <!-- Header -->
-  			<h2><%= resource_title %> List</h2>
+  			<h2><%= schema.label %> List</h2>
   			<hr>
 
         <!-- New Button -->
   			<ul class="list-group mt-2 mb-4 text-center">
-  				<a class="list-group-item" href="#/<%= resource_route %>/new">NEW</a>
+  				<a class="list-group-item" href="#/<%= schema.identifier_plural %>/new">NEW</a>
   			</ul>
 
         <!-- Fetching -->
@@ -42,7 +42,7 @@ export default {
   props: ['collection'],
   computed: {
     fetching () {
-      return store.getters['<%= resource_name %>/fetching']
+      return store.getters['<%= schema.identifier %>/fetching']
     }
   },
   components: {

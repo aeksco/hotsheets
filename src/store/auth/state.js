@@ -3,7 +3,9 @@
 const state = {
   fetching: false,
   token: null,
-  user: {}
+  user: {},
+  googleAuthenticated: false,
+  googleUser: {}
 }
 
 export default state

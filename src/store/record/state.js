@@ -8,7 +8,9 @@ const state = {
       attributes: {
         name: 'Al Schwaa',
         location: 'Troy, NY',
-        phone: '1234567890'
+        phone: '+1 (518) 212-8923',
+        email: 'al@schwaa.com',
+        address_id: 'AD_51111498775682'
       }
     },
     {
@@ -17,7 +19,8 @@ const state = {
       attributes: {
         name: 'John Doe',
         location: 'NY, NY',
-        phone: '0987654321'
+        phone: '+1 (518) 219-2219',
+        email: 'john@doe.com'
       }
     },
     {
@@ -58,8 +61,8 @@ const state = {
       schema_id: 'schema_85414304137721',
       attributes: {
         job_id: 'JB_00001',
-        client: 'rec_32976293799615',
-        invoice: 'rec_50813637509925',
+        contact_id: 'rec_32976293799615',
+        invoice_id: 'rec_50813637509925',
         status: 'Completed'
       }
     },
@@ -68,9 +71,20 @@ const state = {
       schema_id: 'schema_85414304137721',
       attributes: {
         job_id: 'JB_00002',
-        client: 'rec_83122409943633',
-        invoice: 'rec_56277813766977',
+        contact_id: 'rec_83122409943633',
+        invoice_id: 'rec_56277813766977',
         status: 'In-Progress'
+      }
+    },
+    {
+      schema_id: 'schema_14808974981067',
+      _id: 'AD_51111498775682',
+      attributes: {
+        street_address: '123 South St',
+        street_address_two: 'Suite 320',
+        city: 'Troy',
+        state: 'New York',
+        zip_code: '12180'
       }
     }
   ]
