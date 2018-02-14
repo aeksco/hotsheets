@@ -132,7 +132,7 @@
               <option value='HAS_ONE'>Has One</option>
               <option value='BELONGS_TO'>Belongs To</option>
               <option value='HAS_MANY'>Has Many</option>
-              <!-- <option value='HAS_AND_BELONGS_TO_MANY'>Has And Belongs To Many</option> -->
+              <option value='HAS_AND_BELONGS_TO_MANY'>Has And Belongs To Many</option>
             </optgroup>
           </select>
         </div>
@@ -145,13 +145,14 @@
         </div>
 
         <!-- SCHEMA Options -->
-        <div class="form-group" v-if="selectedAttr.datatype === 'BELONGS_TO' || selectedAttr.datatype === 'HAS_ONE' || selectedAttr.datatype === 'HAS_MANY'">
+        <div class="form-group" v-if="selectedAttr.datatype === 'BELONGS_TO' || selectedAttr.datatype === 'HAS_ONE' || selectedAttr.datatype === 'HAS_MANY' || selectedAttr.datatype === 'HAS_AND_BELONGS_TO_MANY' ">
           <label>Related Schema</label>
           <small class="form-text text-muted">The Schema with which this attribute maintains a relation.</small>
           <select class="form-control" v-model="selectedAttr.datatypeOptions.schema_id" >
             <option v-if="selectedAttr.datatype === 'BELONGS_TO'" v-for="s in allSchemas" :key="s._id" :value="s._id">{{s.label}}</option>
             <option v-if="selectedAttr.datatype === 'HAS_ONE'" v-for="s in allSchemas" :key="s._id" :value="s._id">{{s.label}}</option>
             <option v-if="selectedAttr.datatype === 'HAS_MANY'" v-for="s in allSchemas" :key="s._id" :value="s._id">{{s.label_plural}}</option>
+            <option v-if="selectedAttr.datatype === 'HAS_AND_BELONGS_TO_MANY'" v-for="s in allSchemas" :key="s._id" :value="s._id">{{s.label_plural}}</option>
           </select>
         </div>
 
