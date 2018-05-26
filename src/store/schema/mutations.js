@@ -2,10 +2,39 @@ import _ from 'lodash'
 import store from '@/store'
 // import { TEXT_WORKFLOW_STEP, MACRO_WORKFLOW_STEP, DELAY_WORKFLOW_STEP, KEY_WORKFLOW_STEP, KEY_DN_POSITION, KEY_UP_POSITION, KEY_PR_POSITION } from './constants'
 
+// NESTED_MUTATIONS = ({ parent_attribute, empty_child, child_identifier, child_label })
+import { NESTED_MUTATIONS } from '@/store/lib/mixins'
+console.log(NESTED_MUTATIONS)
+
+let nested_options = {
+  parent_attribute: 'decorators',
+  child_label: 'Decorator', // addDecorator, persistDecorator
+  empty_child: {
+    label: 'New Decorator',
+    target_property: 'row_color',
+    definitions: [
+      {
+        _id: 'def_0009999',
+        operation: {
+          type: 'exact_match',
+          source_attribute_id: 'attr_1',
+          value: 'Al Schwaa'
+        },
+        action: {
+          type: 'literal',
+          value: 'bg-danger'
+        }
+      }
+    ]
+  }
+}
+console.log(nested_options)
+
 // // // //
 
-// Project Module mutations
+// Schema Module mutations
 const mutations = {
+  ...NESTED_MUTATIONS(nested_options),
   sync (state, collection) {
     state.collection = _.sortBy(collection, (s) => { return s.order })
   },

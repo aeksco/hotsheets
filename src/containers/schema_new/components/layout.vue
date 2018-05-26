@@ -85,6 +85,7 @@
 
       <div class="col-lg-6">
         <AttributeForm :schema="schema"/>
+        <DecoratorForm :schema="schema"/>
       </div>
     </div>
   </div>
@@ -93,34 +94,36 @@
 <!-- // // // //  -->
 
 <script>
-import store from '@/store'
+
 import router from '@/routers'
 import AttributeForm from './AttributeForm'
+import DecoratorForm from './DecoratorForm'
 import FormInput from '@/components/FormInput'
 
 export default {
   props: ['schema'],
   components: {
+    DecoratorForm,
     AttributeForm,
     FormInput
   },
   beforeMount () {
-    store.commit('schema/clearSelectedAttribute')
+    this.$store.commit('schema/clearSelectedAttribute')
   },
   methods: {
     onSubmit () {
       if (this.schema.label && this.schema.identifier && this.schema.label_plural) {
-        store.commit('schema/persist', { schema: this.schema })
+        this.$store.commit('schema/persist', { schema: this.schema })
         router.go(-1)
       }
     },
     clearSelected () {
-      store.commit('schema/clearSelectedAttribute')
+      this.$store.commit('schema/clearSelectedAttribute')
     }
   },
   computed: {
     selectedAttr () {
-      return store.getters['schema/selectedAttribute']
+      return this.$store.getters['schema/selectedAttribute']
     }
   }
 }

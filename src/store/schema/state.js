@@ -11,6 +11,36 @@ const state = {
         navbar_link: true,
         icon: 'fa-user-circle-o'
       },
+      decorators: [
+        {
+          _id: 'dec_001',
+          order: 1,
+          label: 'Row Color',
+          target_property: 'row_color',
+          definitions: [
+            {
+              _id: 'def_0001',
+              operation: {
+                type: 'exact_match',
+                source_attribute_id: 'attr_1', // TODO - this selection should determine the available types of operations
+                value: 'Al Schwaa'
+              },
+              action: {
+                type: 'literal',
+                value: 'bg-danger'
+              }
+            }
+          ]
+        }
+      ],
+      accumulators: [
+        {
+          id: 'acc_001',
+          label: 'Total Business',
+          type: 'SUM',
+          results: []
+        }
+      ],
       attributes: [
         {
           order: 0,
@@ -107,6 +137,8 @@ const state = {
         navbar_link: true,
         icon: 'fa-usd'
       },
+      decorators: [],
+      accumulators: [],
       attributes: [
         {
           order: 0,
@@ -180,6 +212,8 @@ const state = {
         navbar_link: true,
         icon: 'fa-list-alt'
       },
+      decorators: [],
+      accumulators: [],
       attributes: [
         {
           order: 1,
@@ -242,6 +276,8 @@ const state = {
       label_plural: 'Addresses',
       identifier: 'address',
       identifier_plural: 'addresses',
+      decorators: [],
+      accumulators: [],
       attributes: [
         {
           order: 1,
